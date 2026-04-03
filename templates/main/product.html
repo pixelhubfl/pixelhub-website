@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ product.name }}</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #111;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 40px;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .image {
+            width: 400px;
+        }
+
+        .image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .details {
+            max-width: 400px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px;
+            background: #ff4d00;
+            border: none;
+            color: white;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="image">
+        {% if product.image %}
+            <img src="{{ product.image.url }}">
+        {% endif %}
+    </div>
+
+    <div class="details">
+        <h1>{{ product.name }}</h1>
+        <p>${{ product.base_price }} / sq.ft</p>
+
+        <form method="POST" action="/add-to-cart/{{ product.id }}/" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% if product.is_custom_size %}
+                <input type="number" step="0.1" name="width" placeholder="Width (ft)" required>
+                <input type="number" step="0.1" name="height" placeholder="Height (ft)" required>
+            {% endif %}
+
+            <input type="file" name="file">
+
+            <textarea name="notes" placeholder="Describe your design..."></textarea>
+
+            <button type="submit">Add to Cart</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

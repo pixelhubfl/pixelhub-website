@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #111;
+            color: white;
+            padding: 40px;
+        }
+
+        .item {
+            background: #222;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: red;
+        }
+
+        .checkout {
+            margin-top: 30px;
+            padding: 15px;
+            background: #ff4d00;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Your Cart</h1>
+
+{% for key, item in cart.items %}
+<div class="item">
+    <h3>{{ item.name }}</h3>
+    <p>Price: ${{ item.price }}</p>
+    <p>Size: {{ item.size }}</p>
+    <p>Notes: {{ item.notes }}</p>
+
+    {% if item.file %}
+        <a href="{{ item.file }}" target="_blank">View File</a>
+    {% endif %}
+
+    <br><br>
+    <a href="/remove/{{ key }}/">Remove</a>
+</div>
+{% endfor %}
+
+<h2>Total: ${{ total }}</h2>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pixel Hub</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: white;
+        }
+
+        .hero {
+            height: 90vh;
+            background: url("{% static 'images/background.jpg' %}") center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background: #ff4d00;
+            color: white;
+        }
+
+        .btn-dark {
+            background: black;
+            color: white;
+        }
+
+        .section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .services {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: 260px;
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .card h3 {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+    <div>
+        <h1>PIXEL HUB PRINTING</h1>
+        <p>Custom Signs, Banners & Wraps</p>
+
+        <a href="/shop/" class="btn btn-primary">Shop Now</a>
+        <a href="/services/" class="btn btn-dark">Get a Quote</a>
+    </div>
+</div>
+
+<!-- SERVICES -->
+<div class="section">
+    <h2>Our Services</h2>
+
+    <div class="services">
+
+        <div class="card">
+            <img src="{% static 'images/car_wrap.jpg' %}">
+            <h3>Car Wraps</h3>
+        </div>
+
+        <div class="card">
+            <img src="{% static 'images/food_truck.jpg' %}">
+            <h3>Food Truck Wraps</h3>
+        </div>
+
+        <div class="card">
+            <img src="{% static 'images/boat_wrap.jpg' %}">
+            <h3>Boat Wraps</h3>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

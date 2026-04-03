@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shop - Pixel Hub</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #111;
+            color: white;
+        }
+
+        .header {
+            padding: 20px;
+            text-align: center;
+            background: black;
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .card {
+            width: 260px;
+            background: #222;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #ff4d00;
+            color: white;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Shop Products</h1>
+</div>
+
+<div class="products">
+
+    {% for product in products %}
+    <div class="card">
+
+        {% if product.image %}
+            <img src="{{ product.image.url }}">
+        {% endif %}
+
+        <h3>{{ product.name }}</h3>
+        <p>${{ product.base_price }} / sq.ft</p>
+
+        <a href="/product/{{ product.id }}/" class="btn">Customize</a>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>
