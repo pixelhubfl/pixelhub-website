@@ -12,107 +12,170 @@
             color: white;
         }
 
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: #000;
+        }
+
+        .navbar img {
+            height: 50px;
+        }
+
+        .nav-links a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+        }
+
+        /* HERO */
         .hero {
             height: 90vh;
-            background: url("{% static 'images/background.jpg' %}") center/cover no-repeat;
+            background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.2)),
+                        url("{% static 'images/background.jpg' %}") center/cover;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
+            padding-left: 60px;
+        }
+
+        .hero-content {
+            max-width: 500px;
         }
 
         .hero h1 {
-            font-size: 60px;
+            font-size: 50px;
             margin-bottom: 10px;
         }
 
         .hero p {
             font-size: 20px;
+            margin-bottom: 20px;
         }
 
         .btn {
-            display: inline-block;
-            padding: 12px 25px;
-            margin: 10px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .btn-primary {
+            padding: 12px 20px;
             background: #ff4d00;
             color: white;
+            text-decoration: none;
+            margin-right: 10px;
         }
 
-        .btn-dark {
-            background: black;
-            color: white;
-        }
-
-        .section {
-            padding: 60px 20px;
+        /* SERVICES */
+        .services {
+            padding: 60px 40px;
             text-align: center;
         }
 
-        .services {
-            display: flex;
-            justify-content: center;
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
-            flex-wrap: wrap;
         }
 
-        .card {
-            width: 260px;
+        .service {
             background: #222;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 10px;
         }
 
-        .card img {
+        .service img {
             width: 100%;
-            border-radius: 10px;
+            height: 200px;
+            object-fit: cover;
         }
 
-        .card h3 {
-            margin-top: 15px;
+        /* CONTACT */
+        .contact {
+            padding: 40px;
+            text-align: center;
+            background: #000;
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #111;
+        }
+
+        .footer a {
+            color: #ff4d00;
+            margin: 0 10px;
+            text-decoration: none;
         }
     </style>
 </head>
 
 <body>
 
+<!-- NAVBAR -->
+<div class="navbar">
+    <img src="{% static 'images/logo.png' %}">
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/shop/">Shop</a>
+        <a href="/services/">Services</a>
+        <a href="/cart/">Cart 🛒</a>
+    </div>
+</div>
+
 <!-- HERO -->
 <div class="hero">
-    <div>
-        <h1>PIXEL HUB PRINTING</h1>
-        <p>Custom Signs, Banners & Wraps</p>
+    <div class="hero-content">
+        <h1>Make Your Brand Stand Out</h1>
+        <p>Custom Signs, Wraps & Large Format Printing</p>
 
-        <a href="/shop/" class="btn btn-primary">Shop Now</a>
-        <a href="/services/" class="btn btn-dark">Get a Quote</a>
+        <a href="/shop/" class="btn">Shop Now</a>
+        <a href="/services/" class="btn">Get a Quote</a>
     </div>
 </div>
 
 <!-- SERVICES -->
-<div class="section">
+<div class="services">
     <h2>Our Services</h2>
 
-    <div class="services">
+    <div class="service-grid">
 
-        <div class="card">
+        <div class="service">
             <img src="{% static 'images/car_wrap.jpg' %}">
-            <h3>Car Wraps</h3>
+            <h3>Car Wrap</h3>
         </div>
 
-        <div class="card">
+        <div class="service">
             <img src="{% static 'images/food_truck.jpg' %}">
-            <h3>Food Truck Wraps</h3>
+            <h3>Food Truck</h3>
         </div>
 
-        <div class="card">
+        <div class="service">
             <img src="{% static 'images/boat_wrap.jpg' %}">
-            <h3>Boat Wraps</h3>
+            <h3>Boat Wrap</h3>
+        </div>
+
+        <div class="service">
+            <img src="{% static 'images/truck_wrap.jpg' %}">
+            <h3>Truck Wrap</h3>
         </div>
 
     </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact">
+    <h2>Contact Us</h2>
+    <p>📞 386-289-7307</p>
+    <p>📧 pixelhubflorida@gmail.com</p>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    <p>Follow Us</p>
+
+    <a href="https://www.facebook.com/share/1LJuRWuWcV/?mibextid=wwXIfr">Facebook</a>
+    <a href="https://www.instagram.com/pixelhubflorida?igsh=Nmx3OHJ2NXRvbzV2&utm_source=qr">Instagram</a>
+    <a href="https://www.tiktok.com/@pixelhubflorida?_r=1&_t=ZT-95DWbW2qhF0">TikTok</a>
 </div>
 
 </body>
