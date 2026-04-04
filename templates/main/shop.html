@@ -7,76 +7,102 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial;
+            font-family: Arial, sans-serif;
             background: #111;
             color: white;
         }
 
-        .header {
-            padding: 20px;
-            text-align: center;
-            background: black;
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: #000;
         }
 
-        .products {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
+        .navbar img {
+            height: 50px;
+        }
+
+        .nav-links a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+        }
+
+        /* SHOP */
+        .container {
             padding: 40px;
         }
 
-        .card {
-            width: 260px;
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .product {
             background: #222;
             padding: 15px;
-            border-radius: 10px;
             text-align: center;
         }
 
-        .card img {
+        .product img {
             width: 100%;
-            border-radius: 10px;
+            height: 200px;
+            object-fit: cover;
         }
 
-        .card h3 {
-            margin: 10px 0;
-        }
-
-        .btn {
+        .product a {
             display: inline-block;
-            padding: 10px 20px;
+            margin-top: 10px;
+            padding: 10px;
             background: #ff4d00;
             color: white;
             text-decoration: none;
-            margin-top: 10px;
         }
     </style>
 </head>
 
 <body>
 
-<div class="header">
-    <h1>Shop Products</h1>
+<!-- NAVBAR -->
+<div class="navbar">
+    <img src="{% static 'images/logo.png' %}">
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/shop/">Shop</a>
+        <a href="/services/">Services</a>
+        <a href="/cart/">Cart 🛒</a>
+    </div>
 </div>
 
-<div class="products">
+<!-- SHOP -->
+<div class="container">
+    <h1>Shop</h1>
 
-    {% for product in products %}
-    <div class="card">
+    <div class="products">
 
-        {% if product.image %}
-            <img src="{{ product.image.url }}">
-        {% endif %}
+        {% for product in products %}
+        <div class="product">
 
-        <h3>{{ product.name }}</h3>
-        <p>${{ product.base_price }} / sq.ft</p>
+            <!-- 🔥 IMAGEN DINÁMICA -->
+            {% if product.image %}
+                <img src="{{ product.image.url }}">
+            {% else %}
+                <img src="{% static 'images/car_wrap.jpg' %}">
+            {% endif %}
 
-        <a href="/product/{{ product.id }}/" class="btn">Customize</a>
+            <h3>{{ product.name }}</h3>
+            <p>${{ product.base_price }}</p>
+
+            <a href="/product/{{ product.id }}/">View</a>
+        </div>
+        {% endfor %}
 
     </div>
-    {% endfor %}
-
 </div>
 
 </body>
