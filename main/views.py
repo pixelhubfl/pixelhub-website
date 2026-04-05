@@ -121,3 +121,44 @@ def create_checkout_session(request):
 def success(request):
     request.session['cart'] = {}
     return render(request, 'main/success.html')
+
+
+from django.core.mail import EmailMessage
+
+def services(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        service = request.POST.get('service')
+        details = request.POST.get('details')
+
+        files = request.FILES.getlist('files')
+
+        message = f"""
+New Quote Request
+
+Name: {name}
+Email: {email}
+Phone: {phone}
+Service: {service}
+
+Details:
+{details}
+"""
+
+        email_message = EmailMessage(
+            'New Quote - Pixel Hub',
+            message,
+            None,
+            ['pixelhubflorida@gmail.com'],
+        )
+
+        for file in files:
+            email_message.attach(file.name, file.read(), file.content_type)
+
+        email_message.send()
+
+        return render(request, 'main/success.html')
+
+    return render(request, 'main/services.html')
