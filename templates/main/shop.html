@@ -88,12 +88,7 @@
         {% for product in products %}
         <div class="product">
 
-            <!-- 🔥 IMAGEN DINÁMICA -->
-            {% if product.image %}
-                <img src="{{ product.image.url }}">
-            {% else %}
-                <img src="{% static 'images/car_wrap.jpg' %}">
-            {% endif %}
+            <img src="{% static 'images/' %}{{ product.image }}">
 
             <h3>{{ product.name }}</h3>
             <p>${{ product.base_price }}</p>
