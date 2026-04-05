@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Get a Quote - Pixel Hub</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #111;
+            color: white;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 40px;
+            background: #000;
+        }
+
+        .navbar img {
+            height: 50px;
+        }
+
+        .nav-links a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+        }
+
+        /* FORM */
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            background: #222;
+            padding: 30px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px;
+            background: #ff4d00;
+            border: none;
+            color: white;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <img src="{% static 'images/logo.png' %}">
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/shop/">Shop</a>
+        <a href="/services/">Services</a>
+        <a href="/cart/">Cart 🛒</a>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Request a Quote</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="phone" placeholder="Phone Number">
+
+        <select name="service">
+            <option>Car Wrap</option>
+            <option>Truck Wrap</option>
+            <option>Boat Wrap</option>
+            <option>Food Truck Wrap</option>
+        </select>
+
+        <textarea name="details" placeholder="Describe your project"></textarea>
+
+        <!-- 🔥 MULTIPLE FILES -->
+        <input type="file" name="files" multiple>
+
+        <button type="submit">Send Request</button>
+    </form>
+</div>
+
+</body>
+</html>
