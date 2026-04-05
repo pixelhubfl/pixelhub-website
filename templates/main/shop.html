@@ -88,7 +88,7 @@
         {% for product in products %}
         <div class="product">
 
-            <img src="{% static 'images/' %}{{ product.image }}">
+            <img src="{% static 'images/'|add:product.image %}">
 
             <h3>{{ product.name }}</h3>
             <p>${{ product.base_price }}</p>
