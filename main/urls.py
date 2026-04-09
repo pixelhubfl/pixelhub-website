@@ -10,4 +10,6 @@ urlpatterns = [
 
     path('add-to-cart/<int:id>/', views.add_to_cart, name='add_to_cart'),
     path('cart/', views.cart, name='cart'),
+    path('checkout/', views.create_checkout_session, name='checkout'),
+    path('success/', views.success, name='success'),
 ]
