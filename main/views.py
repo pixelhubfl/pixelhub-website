@@ -4,6 +4,7 @@ import uuid
 from django.core.files.storage import FileSystemStorage
 import stripe
 from django.conf import settings
+from django.shortcuts import redirect
 
 # 🔥 Stripe config
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -162,3 +163,36 @@ Details:
         return render(request, 'main/success.html')
 
     return render(request, 'main/services.html')
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
+def create_checkout_session(request):
+    cart = request.session.get('cart', {})
+
+    line_items = []
+
+    for item_id, item in cart.items():
+        line_items.append({
+            'price_data': {
+                'currency': 'usd',
+                'product_data': {
+                    'name': item['name'],
+                },
+                'unit_amount': int(item['price'] * 100),
+            },
+            'quantity': item['quantity'],
+        })
+
+    session = stripe.checkout.Session.create(
+        payment_method_types=['card'],
+        line_items=line_items,
+        mode='payment',
+        success_url='https://pixelhubfl.com/success/',
+        cancel_url='https://pixelhubfl.com/cart/',
+    )
+
+    return redirect(session.url)
+
+
+def success(request):
+    return render(request, 'main/success.html')
