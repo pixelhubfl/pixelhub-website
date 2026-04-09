@@ -1,0 +1,32 @@
+[
+  {
+    "model": "main.product",
+    "pk": 1,
+    "fields": {
+      "name": "Yard Sign",
+      "base_price": 25,
+      "image": "yard_sign.jpg",
+      "is_custom_size": false
+    }
+  },
+  {
+    "model": "main.product",
+    "pk": 2,
+    "fields": {
+      "name": "Vinyl Banner",
+      "base_price": 50,
+      "image": "banner.jpg",
+      "is_custom_size": true
+    }
+  },
+  {
+    "model": "main.product",
+    "pk": 3,
+    "fields": {
+      "name": "Custom Stickers",
+      "base_price": 20,
+      "image": "stickers.jpg",
+      "is_custom_size": false
+    }
+  }
+]
