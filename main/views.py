@@ -15,8 +15,17 @@ def home(request):
 
 
 def shop(request):
-    products = Product.objects.all()
-    return render(request, 'main/shop.html', {'products': products})
+    query = request.GET.get('q')
+
+    if query:
+        products = Product.objects.filter(name__icontains=query)
+    else:
+        products = Product.objects.all()
+
+    return render(request, 'main/shop.html', {
+        'products': products,
+        'query': query
+    })
 
 
 def product_detail(request, id):

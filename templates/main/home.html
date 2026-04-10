@@ -117,13 +117,21 @@
 
 <!-- NAVBAR -->
 <div class="navbar">
+    <a href="/">
     <img src="{% static 'images/logo.png' %}">
+</a>
 
     <div class="nav-links">
         <a href="/">Home</a>
         <a href="/shop/">Shop</a>
         <a href="/services/">Services</a>
         <a href="/cart/">Cart 🛒</a>
+    
+        <form method="GET" action="/shop/" style="margin-left: 20px;">
+            <input type="text" name="q" placeholder="Search..."
+        style="padding:8px; border-radius:5px; border:none;">
+        </form>
+
     </div>
 </div>
 
