@@ -4,7 +4,7 @@ import uuid
 from django.core.files.storage import FileSystemStorage
 import stripe
 from django.conf import settings
-from django.shortcuts import redirect
+from django.core.mail import EmailMessage
 
 # 🔥 Stripe config
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -32,6 +32,9 @@ def add_to_cart(request, id):
     product = get_object_or_404(Product, id=id)
     cart = request.session.get('cart', {})
 
+    # 🔥 NUEVO: cantidad
+    quantity = int(request.POST.get('quantity', 1))
+
     width = request.POST.get('width')
     height = request.POST.get('height')
     notes = request.POST.get('notes')
@@ -53,14 +56,13 @@ def add_to_cart(request, id):
     cart[unique_key] = {
         'name': product.name,
         'price': price,
-        'quantity': 1,
+        'quantity': quantity,  # 🔥 ahora sí funciona
         'notes': notes,
         'size': f"{width}ft x {height}ft" if width else "Standard",
         'file': file_url,
     }
 
     request.session['cart'] = cart
-
     return redirect('cart')
 
 
@@ -81,11 +83,10 @@ def remove_from_cart(request, key):
         del cart[key]
 
     request.session['cart'] = cart
-
     return redirect('cart')
 
 
-# 💳 STRIPE CHECKOUT (PRODUCTION READY)
+# 💳 STRIPE CHECKOUT
 def create_checkout_session(request):
     cart = request.session.get('cart', {})
 
@@ -106,7 +107,7 @@ def create_checkout_session(request):
             'quantity': item['quantity'],
         })
 
-    domain = 'https://pixelhubfl.com'  # 🔥 TU DOMINIO
+    domain = 'https://pixelhubfl.com'
 
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
@@ -124,8 +125,7 @@ def success(request):
     return render(request, 'main/success.html')
 
 
-from django.core.mail import EmailMessage
-
+# 📩 SERVICES (QUOTE)
 def services(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -163,36 +163,3 @@ Details:
         return render(request, 'main/success.html')
 
     return render(request, 'main/services.html')
-
-stripe.api_key = settings.STRIPE_SECRET_KEY
-
-def create_checkout_session(request):
-    cart = request.session.get('cart', {})
-
-    line_items = []
-
-    for item_id, item in cart.items():
-        line_items.append({
-            'price_data': {
-                'currency': 'usd',
-                'product_data': {
-                    'name': item['name'],
-                },
-                'unit_amount': int(item['price'] * 100),
-            },
-            'quantity': item['quantity'],
-        })
-
-    session = stripe.checkout.Session.create(
-        payment_method_types=['card'],
-        line_items=line_items,
-        mode='payment',
-        success_url='https://pixelhubfl.com/success/',
-        cancel_url='https://pixelhubfl.com/cart/',
-    )
-
-    return redirect(session.url)
-
-
-def success(request):
-    return render(request, 'main/success.html')
