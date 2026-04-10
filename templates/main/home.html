@@ -30,10 +30,27 @@
             height: 50px;
         }
 
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
         .nav-links a {
             color: white;
             margin-left: 20px;
             text-decoration: none;
+        }
+
+        /* SEARCH */
+        .search-form {
+            margin-left: 20px;
+        }
+
+        .search-input {
+            padding: 8px 12px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
         }
 
         /* HERO */
@@ -118,20 +135,19 @@
 <!-- NAVBAR -->
 <div class="navbar">
     <a href="/">
-    <img src="{% static 'images/logo.png' %}">
-</a>
+        <img src="{% static 'images/logo.png' %}">
+    </a>
 
     <div class="nav-links">
         <a href="/">Home</a>
         <a href="/shop/">Shop</a>
         <a href="/services/">Services</a>
         <a href="/cart/">Cart 🛒</a>
-    
-        <form method="GET" action="/shop/" style="margin-left: 20px;">
-            <input type="text" name="q" placeholder="Search..."
-        style="padding:8px; border-radius:5px; border:none;">
-        </form>
 
+        <!-- 🔥 SEARCH -->
+        <form method="GET" action="/shop/" class="search-form">
+            <input type="text" name="q" placeholder="Search signs, banners, stickers..." class="search-input">
+        </form>
     </div>
 </div>
 
@@ -154,29 +170,29 @@
 
         <div class="service">
             <a href="/services/">
-            <img src="{% static 'images/car_wrap.jpg' %}">
-            <h3>Car Wrap</h3>
+                <img src="{% static 'images/car_wrap.jpg' %}">
+                <h3>Car Wrap</h3>
             </a>
         </div>
 
         <div class="service">
             <a href="/services/">
-            <img src="{% static 'images/food_truck.jpg' %}">
-            <h3>Food Truck</h3>
+                <img src="{% static 'images/food_truck.jpg' %}">
+                <h3>Food Truck</h3>
             </a>
         </div>
 
         <div class="service">
             <a href="/services/">
-            <img src="{% static 'images/boat_wrap.jpg' %}">
-            <h3>Boat Wrap</h3>
+                <img src="{% static 'images/boat_wrap.jpg' %}">
+                <h3>Boat Wrap</h3>
             </a>
         </div>
 
         <div class="service">
             <a href="/services/">
-            <img src="{% static 'images/truck_wrap.jpg' %}">
-            <h3>Truck Wrap</h3>
+                <img src="{% static 'images/truck_wrap.jpg' %}">
+                <h3>Truck Wrap</h3>
             </a>
         </div>
 
@@ -199,7 +215,7 @@
     <a href="https://www.tiktok.com/@pixelhubflorida?_r=1&_t=ZT-95DWbW2qhF0">TikTok</a>
 </div>
 
-<!--Start of Tawk.to Script-->
+<!-- CHAT -->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
@@ -211,7 +227,6 @@ s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
-<!--End of Tawk.to Script-->
 
 </body>
 </html>
