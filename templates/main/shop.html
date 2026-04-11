@@ -120,6 +120,13 @@
 <div class="container">
     <h1>Shop</h1>
 
+    <form method="GET" action="/shop/" style="margin-bottom:20px;">
+        <input type="text" name="q" placeholder="Search..." value="{{ query|default:'' }}">
+        <input type="number" name="min" placeholder="Min Price">
+        <input type="number" name="max" placeholder="Max Price">
+        <button type="submit">Filter</button>
+    </form>
+
     <div class="products">
 
         {% for product in products %}

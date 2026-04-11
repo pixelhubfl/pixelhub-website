@@ -12,9 +12,11 @@
             color: white;
         }
 
+        /* NAVBAR */
         .navbar {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             padding: 15px 40px;
             background: #000;
         }
@@ -23,23 +25,44 @@
             height: 50px;
         }
 
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
         .nav-links a {
             color: white;
             margin-left: 20px;
             text-decoration: none;
         }
 
+        /* SEARCH */
+        .search-form {
+            margin-left: 20px;
+        }
+
+        .search-input {
+            padding: 8px 12px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+        }
+
+        /* FORM */
         .container {
             max-width: 700px;
             margin: 50px auto;
             background: #222;
             padding: 30px;
+            border-radius: 8px;
         }
 
         input, textarea, select {
             width: 100%;
             padding: 10px;
             margin-top: 10px;
+            border: none;
+            border-radius: 5px;
         }
 
         button {
@@ -49,21 +72,30 @@
             border: none;
             color: white;
             width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
         }
     </style>
 </head>
 
 <body>
 
+<!-- NAVBAR -->
 <div class="navbar">
     <a href="/">
-    <img src="{% static 'images/logo.png' %}">
-</a>
+        <img src="{% static 'images/logo.png' %}">
+    </a>
+
     <div class="nav-links">
         <a href="/">Home</a>
         <a href="/shop/">Shop</a>
         <a href="/services/">Services</a>
         <a href="/cart/">Cart 🛒</a>
+
+        <!-- 🔥 SEARCH -->
+        <form method="GET" action="/shop/" class="search-form">
+            <input type="text" name="q" placeholder="Search signs, banners, stickers..." class="search-input">
+        </form>
     </div>
 </div>
 
@@ -92,7 +124,7 @@
     </form>
 </div>
 
-<!--Start of Tawk.to Script-->
+<!-- CHAT -->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
@@ -104,7 +136,6 @@ s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
-<!--End of Tawk.to Script-->
 
 </body>
 </html>

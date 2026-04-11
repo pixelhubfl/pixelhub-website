@@ -16,11 +16,19 @@ def home(request):
 
 def shop(request):
     query = request.GET.get('q')
+    min_price = request.GET.get('min')
+    max_price = request.GET.get('max')
+
+    products = Product.objects.all()
 
     if query:
-        products = Product.objects.filter(name__icontains=query)
-    else:
-        products = Product.objects.all()
+        products = products.filter(name__icontains=query)
+
+    if min_price:
+        products = products.filter(base_price__gte=min_price)
+
+    if max_price:
+        products = products.filter(base_price__lte=max_price)
 
     return render(request, 'main/shop.html', {
         'products': products,
