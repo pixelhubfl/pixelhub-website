@@ -58,6 +58,11 @@ def add_to_cart(request, id):
     file = request.FILES.get('file')
 
     price = product.base_price
+    
+    design_service = request.POST.get('design_service')
+
+    if design_service:
+        price += 30
 
     if product.is_custom_size and width and height:
         price = float(width) * float(height) * product.base_price
@@ -77,6 +82,7 @@ def add_to_cart(request, id):
         'notes': notes,
         'size': f"{width}ft x {height}ft" if width else "Standard",
         'file': file_url,
+        'design': True if design_service else False,
     }
 
     request.session['cart'] = cart

@@ -115,6 +115,10 @@
     <p><strong>Size:</strong> {{ item.size }}</p>
     <p><strong>Notes:</strong> {{ item.notes }}</p>
 
+    {% if item.design %}
+    <p><strong>Design Service:</strong> Yes (+$30)</p>
+    {% endif %}
+
     {% if item.file %}
         <a href="{{ item.file }}" target="_blank">View File</a>
     {% endif %}
