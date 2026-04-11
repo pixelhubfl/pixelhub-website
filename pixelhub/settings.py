@@ -99,8 +99,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# 🔥 WHITENOISE CONFIG
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # MEDIA (no lo usaremos por ahora, pero no estorba)
 MEDIA_URL = '/media/'
