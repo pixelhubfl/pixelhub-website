@@ -2,126 +2,225 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Get a Quote</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial;
-            background: #111;
-            color: white;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        /* NAVBAR */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 40px;
-            background: #000;
-        }
+<title>Get a Quote</title>
 
-        .navbar img {
-            height: 50px;
-        }
+<style>
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-        }
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#111;
+color:white;
+}
 
-        .nav-links a {
-            color: white;
-            margin-left: 20px;
-            text-decoration: none;
-        }
+/* NAVBAR */
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 25px;
+background:#000;
+position:relative;
+}
 
-        /* SEARCH */
-        .search-form {
-            margin-left: 20px;
-        }
+.logo{
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+}
 
-        .search-input {
-            padding: 8px 12px;
-            border-radius: 20px;
-            border: none;
-            outline: none;
-        }
+.logo img{
+height:50px;
+}
 
-        /* FORM */
-        .container {
-            max-width: 700px;
-            margin: 50px auto;
-            background: #222;
-            padding: 30px;
-            border-radius: 8px;
-        }
+.menu-icon{
+display:none;
+font-size:30px;
+cursor:pointer;
+color:white;
+}
 
-        input, textarea, select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 5px;
-        }
+.desktop-nav{
+display:flex;
+gap:20px;
+align-items:center;
+margin-left:auto;
+}
 
-        button {
-            margin-top: 20px;
-            padding: 12px;
-            background: #ff4d00;
-            border: none;
-            color: white;
-            width: 100%;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-    </style>
+.desktop-nav a{
+color:white;
+text-decoration:none;
+}
+
+.search-input{
+padding:10px;
+border:none;
+border-radius:20px;
+box-sizing:border-box;
+}
+
+.mobile-menu{
+display:none;
+flex-direction:column;
+background:#000;
+padding:20px;
+border-top:1px solid #222;
+}
+
+.mobile-menu a{
+padding:10px 0;
+color:white;
+text-decoration:none;
+}
+
+/* FORM CONTAINER */
+.container{
+max-width:800px;
+margin:60px auto;
+background:#1a1a1a;
+padding:40px;
+border-radius:20px;
+box-shadow:0 0 20px rgba(0,0,0,.3);
+}
+
+.container h1{
+margin-bottom:30px;
+font-size:36px;
+text-align:center;
+}
+
+/* FORM */
+input,textarea,select{
+width:100%;
+padding:15px;
+margin-bottom:20px;
+border:none;
+border-radius:12px;
+box-sizing:border-box;
+font-size:16px;
+background:#2a2a2a;
+color:white;
+}
+
+textarea{
+min-height:150px;
+resize:vertical;
+}
+
+button{
+width:100%;
+padding:16px;
+background:#ff4d00;
+border:none;
+color:white;
+font-size:18px;
+font-weight:bold;
+border-radius:12px;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+background:#ff6a33;
+}
+
+/* MOBILE */
+@media (max-width:768px){
+
+.menu-icon{
+display:block;
+}
+
+.desktop-nav{
+display:none;
+}
+
+.container{
+margin:25px;
+padding:25px;
+}
+
+.container h1{
+font-size:28px;
+}
+
+}
+
+</style>
+
 </head>
-
 <body>
 
 <!-- NAVBAR -->
 <div class="navbar">
-    <a href="/">
-        <img src="{% static 'images/logo.png' %}">
-    </a>
 
-    <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/shop/">Shop</a>
-        <a href="/services/">Services</a>
-        <a href="/cart/">Cart 🛒</a>
+<div class="menu-icon" onclick="toggleMenu()">☰</div>
 
-        <!-- 🔥 SEARCH -->
-        <form method="GET" action="/shop/" class="search-form">
-            <input type="text" name="q" placeholder="Search signs, banners, stickers..." class="search-input">
-        </form>
-    </div>
+<div class="logo">
+<a href="/">
+<img src="{% static 'images/logo.png' %}">
+</a>
 </div>
 
+<div class="desktop-nav">
+<a href="/">Home</a>
+<a href="/shop/">Shop</a>
+<a href="/services/">Services</a>
+<a href="/cart/">Cart 🛒</a>
+
+<form method="GET" action="/shop/">
+<input type="text" name="q" placeholder="Search..." class="search-input">
+</form>
+</div>
+
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+
+<form method="GET" action="/shop/" style="margin-bottom:15px;">
+<input type="text" name="q" placeholder="Search..." class="search-input" style="width:100%;">
+</form>
+
+<a href="/">Home</a>
+<a href="/shop/">Shop</a>
+<a href="/services/">Services</a>
+<a href="/cart/">Cart 🛒</a>
+
+</div>
+
+<!-- FORM -->
 <div class="container">
-    <h1>Request a Quote</h1>
 
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
+<h1>Request a Quote</h1>
 
-        <input type="text" name="name" placeholder="Full Name" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="text" name="phone" placeholder="Phone Number">
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
 
-        <select name="service">
-            <option>Car Wrap</option>
-            <option>Truck Wrap</option>
-            <option>Boat Wrap</option>
-            <option>Food Truck Wrap</option>
-        </select>
+<input type="text" name="name" placeholder="Full Name" required>
 
-        <textarea name="details" placeholder="Describe your project"></textarea>
+<input type="email" name="email" placeholder="Email" required>
 
-        <input type="file" name="files" multiple>
+<input type="text" name="phone" placeholder="Phone Number">
 
-        <button type="submit">Send Request</button>
-    </form>
+<select name="service">
+<option>Car Wrap</option>
+<option>Truck Wrap</option>
+<option>Boat Wrap</option>
+<option>Food Truck Wrap</option>
+</select>
+
+<textarea name="details" placeholder="Describe your project"></textarea>
+
+<input type="file" name="files" multiple>
+
+<button type="submit">Send Request</button>
+
+</form>
+
 </div>
 
 <!-- CHAT -->
@@ -135,6 +234,22 @@ s1.charset='UTF-8';
 s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
+</script>
+
+<script>
+
+function toggleMenu(){
+
+let menu=document.getElementById("mobileMenu");
+
+if(menu.style.display==="flex"){
+menu.style.display="none";
+}else{
+menu.style.display="flex";
+}
+
+}
+
 </script>
 
 </body>

@@ -2,217 +2,345 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Pixel Hub</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #111;
-            color: white;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .service a {
-            text-decoration: none;
-            color: white;
-        }
+<title>Pixel Hub</title>
 
-        /* NAVBAR */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 40px;
-            background: #000;
-        }
+<style>
 
-        .navbar img {
-            height: 50px;
-        }
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#111;
+color:white;
+}
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-        }
+/* NAVBAR */
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 25px;
+background:#000;
+position:relative;
+}
 
-        .nav-links a {
-            color: white;
-            margin-left: 20px;
-            text-decoration: none;
-        }
+.logo{
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+}
 
-        /* SEARCH */
-        .search-form {
-            margin-left: 20px;
-        }
+.logo img{
+height:50px;
+}
 
-        .search-input {
-            padding: 8px 12px;
-            border-radius: 20px;
-            border: none;
-            outline: none;
-        }
+.menu-icon{
+display:none;
+font-size:30px;
+cursor:pointer;
+color:white;
+}
 
-        /* HERO */
-        .hero {
-            height: 90vh;
-            background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.2)),
-                        url("{% static 'images/background.jpg' %}") center/cover;
-            display: flex;
-            align-items: center;
-            padding-left: 60px;
-        }
+.desktop-nav{
+display:flex;
+gap:20px;
+align-items:center;
+margin-left:auto;
+}
 
-        .hero-content {
-            max-width: 500px;
-        }
+.desktop-nav a{
+color:white;
+text-decoration:none;
+}
 
-        .hero h1 {
-            font-size: 50px;
-            margin-bottom: 10px;
-        }
+.search-input{
+padding:10px;
+border:none;
+border-radius:20px;
+box-sizing:border-box;
+}
 
-        .hero p {
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
+.mobile-menu{
+display:none;
+flex-direction:column;
+background:#000;
+padding:20px;
+border-top:1px solid #222;
+}
 
-        .btn {
-            padding: 12px 20px;
-            background: #ff4d00;
-            color: white;
-            text-decoration: none;
-            margin-right: 10px;
-        }
+.mobile-menu a{
+padding:10px 0;
+color:white;
+text-decoration:none;
+}
 
-        /* SERVICES */
-        .services {
-            padding: 60px 40px;
-            text-align: center;
-        }
+/* HERO */
+.hero{
+height:90vh;
+background:
+linear-gradient(to right, rgba(0,0,0,.8), rgba(0,0,0,.3)),
+url("{% static 'images/background.jpg' %}") center/cover;
+display:flex;
+align-items:center;
+padding:60px;
+}
 
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
+.hero-content{
+max-width:600px;
+}
 
-        .service {
-            background: #222;
-            padding: 10px;
-        }
+.hero h1{
+font-size:56px;
+margin-bottom:15px;
+}
 
-        .service img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
+.hero p{
+font-size:22px;
+margin-bottom:30px;
+color:#ddd;
+}
 
-        /* CONTACT */
-        .contact {
-            padding: 40px;
-            text-align: center;
-            background: #000;
-        }
+.hero-buttons{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+}
 
-        /* FOOTER */
-        .footer {
-            text-align: center;
-            padding: 20px;
-            background: #111;
-        }
+.btn{
+padding:15px 25px;
+background:#ff4d00;
+color:white;
+text-decoration:none;
+border-radius:10px;
+font-weight:bold;
+transition:.3s;
+}
 
-        .footer a {
-            color: #ff4d00;
-            margin: 0 10px;
-            text-decoration: none;
-        }
-    </style>
+.btn:hover{
+background:#ff6a33;
+}
+
+/* SERVICES */
+.services{
+padding:60px 40px;
+text-align:center;
+}
+
+.service-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+margin-top:30px;
+}
+
+.service{
+background:#1a1a1a;
+padding:15px;
+border-radius:15px;
+transition:.3s;
+}
+
+.service:hover{
+transform:translateY(-5px);
+}
+
+.service a{
+text-decoration:none;
+color:white;
+}
+
+.service img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:10px;
+}
+
+/* CONTACT */
+.contact{
+padding:50px 20px;
+text-align:center;
+background:#000;
+}
+
+/* FOOTER */
+.footer{
+padding:30px;
+text-align:center;
+}
+
+.footer a{
+color:#ff4d00;
+margin:0 10px;
+text-decoration:none;
+}
+
+/* MOBILE */
+@media (max-width:768px){
+
+.menu-icon{
+display:block;
+}
+
+.desktop-nav{
+display:none;
+}
+
+.hero{
+padding:30px;
+text-align:center;
+justify-content:center;
+}
+
+.hero-content{
+max-width:100%;
+}
+
+.hero h1{
+font-size:38px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+.hero-buttons{
+flex-direction:column;
+}
+
+.service-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+@media (min-width:769px) and (max-width:1100px){
+
+.service-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+</style>
+
 </head>
-
 <body>
 
 <!-- NAVBAR -->
 <div class="navbar">
-    <a href="/">
-        <img src="{% static 'images/logo.png' %}">
-    </a>
 
-    <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/shop/">Shop</a>
-        <a href="/services/">Services</a>
-        <a href="/cart/">Cart 🛒</a>
+<div class="menu-icon" onclick="toggleMenu()">☰</div>
 
-        <!-- 🔥 SEARCH -->
-        <form method="GET" action="/shop/" class="search-form">
-            <input type="text" name="q" placeholder="Search signs, banners, stickers..." class="search-input">
-        </form>
-    </div>
+<div class="logo">
+<a href="/">
+<img src="{% static 'images/logo.png' %}">
+</a>
+</div>
+
+<div class="desktop-nav">
+<a href="/">Home</a>
+<a href="/shop/">Shop</a>
+<a href="/services/">Services</a>
+<a href="/cart/">Cart 🛒</a>
+
+<form method="GET" action="/shop/">
+<input type="text" name="q" placeholder="Search..." class="search-input">
+</form>
+</div>
+
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+
+<form method="GET" action="/shop/" style="margin-bottom:15px;">
+<input type="text" name="q" placeholder="Search..." class="search-input" style="width:100%;">
+</form>
+
+<a href="/">Home</a>
+<a href="/shop/">Shop</a>
+<a href="/services/">Services</a>
+<a href="/cart/">Cart 🛒</a>
+
 </div>
 
 <!-- HERO -->
 <div class="hero">
-    <div class="hero-content">
-        <h1>Make Your Brand Stand Out</h1>
-        <p>Custom Signs, Wraps & Large Format Printing</p>
+<div class="hero-content">
 
-        <a href="/shop/" class="btn">Shop Now</a>
-        <a href="/services/" class="btn">Get a Quote</a>
-    </div>
+<h1>Make Your Brand Stand Out</h1>
+
+<p>Custom Signs, Wraps & Large Format Printing</p>
+
+<div class="hero-buttons">
+<a href="/shop/" class="btn">Shop Now</a>
+<a href="/services/" class="btn">Get a Quote</a>
+</div>
+
+</div>
 </div>
 
 <!-- SERVICES -->
 <div class="services">
-    <h2>Our Services</h2>
 
-    <div class="service-grid">
+<h2>Our Services</h2>
 
-        <div class="service">
-            <a href="/services/">
-                <img src="{% static 'images/car_wrap.jpg' %}">
-                <h3>Car Wrap</h3>
-            </a>
-        </div>
+<div class="service-grid">
 
-        <div class="service">
-            <a href="/services/">
-                <img src="{% static 'images/food_truck.jpg' %}">
-                <h3>Food Truck</h3>
-            </a>
-        </div>
+<div class="service">
+<a href="/services/">
+<img src="{% static 'images/car_wrap.jpg' %}">
+<h3>Car Wrap</h3>
+</a>
+</div>
 
-        <div class="service">
-            <a href="/services/">
-                <img src="{% static 'images/boat_wrap.jpg' %}">
-                <h3>Boat Wrap</h3>
-            </a>
-        </div>
+<div class="service">
+<a href="/services/">
+<img src="{% static 'images/food_truck.jpg' %}">
+<h3>Food Truck</h3>
+</a>
+</div>
 
-        <div class="service">
-            <a href="/services/">
-                <img src="{% static 'images/truck_wrap.jpg' %}">
-                <h3>Truck Wrap</h3>
-            </a>
-        </div>
+<div class="service">
+<a href="/services/">
+<img src="{% static 'images/boat_wrap.jpg' %}">
+<h3>Boat Wrap</h3>
+</a>
+</div>
 
-    </div>
+<div class="service">
+<a href="/services/">
+<img src="{% static 'images/truck_wrap.jpg' %}">
+<h3>Truck Wrap</h3>
+</a>
+</div>
+
+</div>
+
 </div>
 
 <!-- CONTACT -->
 <div class="contact">
-    <h2>Contact Us</h2>
-    <p>📞 386-289-7307</p>
-    <p>📧 pixelhubflorida@gmail.com</p>
+
+<h2>Contact Us</h2>
+
+<p>📞 386-289-7307</p>
+<p>📧 pixelhubflorida@gmail.com</p>
+
 </div>
 
 <!-- FOOTER -->
 <div class="footer">
-    <p>Follow Us</p>
 
-    <a href="https://www.facebook.com/share/1LJuRWuWcV/?mibextid=wwXIfr">Facebook</a>
-    <a href="https://www.instagram.com/pixelhubflorida?igsh=Nmx3OHJ2NXRvbzV2&utm_source=qr">Instagram</a>
-    <a href="https://www.tiktok.com/@pixelhubflorida?_r=1&_t=ZT-95DWbW2qhF0">TikTok</a>
+<p>Follow Us</p>
+
+<a href="https://www.facebook.com/share/1LJuRWuWcV/?mibextid=wwXIfr">Facebook</a>
+<a href="https://www.instagram.com/pixelhubflorida?igsh=Nmx3OHJ2NXRvbzV2&utm_source=qr">Instagram</a>
+<a href="https://www.tiktok.com/@pixelhubflorida?_r=1&_t=ZT-95DWbW2qhF0">TikTok</a>
+
 </div>
 
 <!-- CHAT -->
@@ -226,6 +354,22 @@ s1.charset='UTF-8';
 s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
+</script>
+
+<script>
+
+function toggleMenu(){
+
+let menu=document.getElementById("mobileMenu");
+
+if(menu.style.display==="flex"){
+menu.style.display="none";
+}else{
+menu.style.display="flex";
+}
+
+}
+
 </script>
 
 </body>

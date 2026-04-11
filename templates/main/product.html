@@ -2,172 +2,308 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ product.name }}</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #111;
-            color: white;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        /* NAVBAR */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 40px;
-            background: #000;
-        }
+<title>{{ product.name }}</title>
 
-        .navbar img {
-            height: 50px;
-        }
+<style>
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-        }
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#111;
+color:white;
+}
 
-        .nav-links a {
-            color: white;
-            margin-left: 20px;
-            text-decoration: none;
-        }
+/* NAVBAR */
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 25px;
+background:#000;
+position:relative;
+}
 
-        /* SEARCH */
-        .search-form {
-            margin-left: 20px;
-        }
+.logo{
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+}
 
-        .search-input {
-            padding: 8px 12px;
-            border-radius: 20px;
-            border: none;
-            outline: none;
-        }
+.logo img{
+height:50px;
+}
 
-        /* LAYOUT */
-        .container {
-            display: flex;
-            gap: 40px;
-            padding: 50px;
-        }
+.menu-icon{
+display:none;
+font-size:30px;
+cursor:pointer;
+color:white;
+}
 
-        .image img {
-            width: 500px;
-            border-radius: 10px;
-        }
+.desktop-nav{
+display:flex;
+gap:20px;
+align-items:center;
+margin-left:auto;
+}
 
-        .details {
-            max-width: 400px;
-        }
+.desktop-nav a{
+color:white;
+text-decoration:none;
+}
 
-        .details h1 {
-            margin-bottom: 10px;
-        }
+.search-input{
+padding:10px;
+border:none;
+border-radius:20px;
+box-sizing:border-box;
+}
 
-        .details p {
-            font-size: 18px;
-        }
+.mobile-menu{
+display:none;
+flex-direction:column;
+background:#000;
+padding:20px;
+border-top:1px solid #222;
+}
 
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-        }
+.mobile-menu a{
+padding:10px 0;
+color:white;
+text-decoration:none;
+}
 
-        .checkbox {
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+/* PRODUCT */
+.container{
+display:flex;
+gap:50px;
+padding:50px;
+max-width:1400px;
+margin:auto;
+}
 
-        button {
-            margin-top: 20px;
-            padding: 12px;
-            background: #ff4d00;
-            border: none;
-            color: white;
-            width: 100%;
-            cursor: pointer;
-        }
-    </style>
+.product-gallery{
+flex:1;
+}
+
+.product-gallery img{
+width:100%;
+border-radius:15px;
+}
+
+.details{
+flex:1;
+background:#1a1a1a;
+padding:30px;
+border-radius:15px;
+}
+
+.price{
+font-size:30px;
+font-weight:bold;
+color:#ff4d00;
+margin:15px 0;
+}
+
+.description{
+color:#ccc;
+line-height:1.6;
+margin-bottom:25px;
+}
+
+.option-group{
+margin-bottom:20px;
+}
+
+input,textarea{
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+box-sizing:border-box;
+font-size:16px;
+}
+
+textarea{
+min-height:120px;
+}
+
+.checkbox{
+display:flex;
+gap:10px;
+align-items:center;
+}
+
+.checkbox input{
+width:auto;
+}
+
+.btn{
+width:100%;
+padding:18px;
+background:#ff4d00;
+border:none;
+color:white;
+font-size:18px;
+font-weight:bold;
+border-radius:10px;
+cursor:pointer;
+}
+
+/* MOBILE */
+@media (max-width:768px){
+
+.navbar{
+justify-content:flex-start;
+}
+
+.menu-icon{
+display:block;
+}
+
+.desktop-nav{
+display:none;
+}
+
+.container{
+flex-direction:column;
+padding:0;
+gap:0;
+}
+
+.product-gallery{
+width:100%;
+}
+
+.product-gallery img{
+width:100%;
+border-radius:0;
+}
+
+.details{
+width:100%;
+border-radius:0;
+padding:25px;
+box-sizing:border-box;
+}
+
+}
+
+</style>
+
 </head>
-
 <body>
 
 <!-- NAVBAR -->
 <div class="navbar">
-    <a href="/">
-        <img src="{% static 'images/logo.png' %}">
-    </a>
 
-    <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/shop/">Shop</a>
-        <a href="/services/">Services</a>
-        <a href="/cart/">Cart 🛒</a>
+<div class="menu-icon" onclick="toggleMenu()">☰</div>
 
-        <!-- 🔥 SEARCH -->
-        <form method="GET" action="/shop/" class="search-form">
-            <input type="text" name="q" placeholder="Search signs, banners, stickers..." class="search-input">
-        </form>
-    </div>
+<div class="logo">
+<a href="/">
+<img src="{% static 'images/logo.png' %}">
+</a>
+</div>
+
+<div class="desktop-nav">
+<a href="/">Home</a>
+<a href="/shop/">Shop</a>
+<a href="/services/">Services</a>
+<a href="/cart/">Cart 🛒</a>
+
+<form method="GET" action="/shop/">
+<input type="text" name="q" placeholder="Search..." class="search-input">
+</form>
+</div>
+
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+
+<form method="GET" action="/shop/" style="margin-bottom:15px;">
+<input type="text" name="q" placeholder="Search..." class="search-input" style="width:100%;">
+</form>
+
+<a href="/">Home</a>
+<a href="/shop/">Shop</a>
+<a href="/services/">Services</a>
+<a href="/cart/">Cart 🛒</a>
+
 </div>
 
 <!-- PRODUCT -->
 <div class="container">
 
-    <div class="image">
-        <img src="{% static 'images/' %}{{ product.image }}">
-    </div>
+<div class="product-gallery">
+<img src="{% static 'images/' %}{{ product.image }}">
+</div>
 
-    <div class="details">
-        <h1>{{ product.name }}</h1>
-        <p><strong>Price:</strong> ${{ product.base_price }}</p>
-        
-        <p>{{ product.description }}</p>
+<div class="details">
 
-        <form method="POST" action="/add-to-cart/{{ product.id }}/" enctype="multipart/form-data">
-            {% csrf_token %}
+<h1>{{ product.name }}</h1>
 
-            {% if product.is_custom_size %}
-                <input type="text" name="width" placeholder="Width (ft)">
-                <input type="text" name="height" placeholder="Height (ft)">
-            {% endif %}
+<div class="price">
+Starting at ${{ product.base_price }}
+</div>
 
-            <label>Quantity:</label>
-            <input type="number" name="quantity" value="1" min="1">
+<div class="description">
+{{ product.description }}
+</div>
 
-            <!-- 🔥 DESIGN SERVICE -->
-            <div class="checkbox">
-                <input type="checkbox" name="design_service" value="yes">
-                <label>I need help with my design (+$30)</label>
-            </div>
+<form method="POST" action="/add-to-cart/{{ product.id }}/" enctype="multipart/form-data">
+{% csrf_token %}
 
-            <input type="file" name="file">
-            <textarea name="notes" placeholder="Additional notes..."></textarea>
+{% if product.is_custom_size %}
+<div class="option-group">
+<input type="text" name="width" placeholder="Width (ft)">
+<br><br>
+<input type="text" name="height" placeholder="Height (ft)">
+</div>
+{% endif %}
 
-            <button type="submit">Add to Cart</button>
-        </form>
-    </div>
+<div class="option-group">
+<input type="number" name="quantity" value="1" min="1">
+</div>
+
+<div class="option-group checkbox">
+<input type="checkbox" name="design_service" value="yes">
+<label>I need help with my design (+$30)</label>
+</div>
+
+<div class="option-group">
+<input type="file" name="file">
+</div>
+
+<div class="option-group">
+<textarea name="notes" placeholder="Additional Notes"></textarea>
+</div>
+
+<button class="btn">ADD TO CART</button>
+
+</form>
 
 </div>
 
-<!-- CHAT -->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/69d9486fe0ef771c36227e10/1jlsc5t9e';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
+</div>
+
+<script>
+
+function toggleMenu(){
+
+let menu=document.getElementById("mobileMenu");
+
+if(menu.style.display==="flex"){
+menu.style.display="none";
+}else{
+menu.style.display="flex";
+}
+
+}
+
 </script>
 
 </body>
