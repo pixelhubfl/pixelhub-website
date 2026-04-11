@@ -31,7 +31,7 @@ INSTALLED_APPS = [
 
 # MIDDLEWARE
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware,
+    'django.middleware.security.SecurityMiddleware',
 
     # 🔥 WHITENOISE (CLAVE PARA STATIC EN RENDER)
     'whitenoise.middleware.WhiteNoiseMiddleware',
