@@ -7,6 +7,7 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
 # SECURITY
 SECRET_KEY = 'django-insecure--ita0_e$aavluqgt^_fz#osl=r!a7uph@%!qvo6l4rzgqg#6wm'
 
@@ -17,6 +18,7 @@ ALLOWED_HOSTS = [
     'www.pixelhubfl.com',
 ]
 
+
 # APPS
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -25,15 +27,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'main',
 ]
+
 
 # MIDDLEWARE
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-
-    # 🔥 WHITENOISE (CLAVE PARA STATIC EN RENDER)
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -44,7 +44,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 ROOT_URLCONF = 'pixelhub.urls'
+
 
 # TEMPLATES
 TEMPLATES = [
@@ -62,7 +64,9 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'pixelhub.wsgi.application'
+
 
 # DATABASE
 DATABASES = {
@@ -72,21 +76,15 @@ DATABASES = {
     }
 }
 
+
 # PASSWORDS
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
+
 
 # LANGUAGE
 LANGUAGE_CODE = 'en-us'
@@ -94,16 +92,17 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# STATIC FILES (🔥 CLAVE)
+
+# STATIC FILES
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
-
-# MEDIA (no lo usaremos por ahora, pero no estorba)
+# MEDIA
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
+
 
 # STRIPE
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
