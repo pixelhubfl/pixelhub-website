@@ -16,6 +16,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'pixelhubfl.com',
     'www.pixelhubfl.com',
+    'localhost',
+    '127.0.0.1',
 ]
 
 
