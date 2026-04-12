@@ -10,6 +10,9 @@ urlpatterns = [
     path('shop/', views.shop, name='shop'),
     path('services/', views.services, name='services'),
 
+    # 🎨 DESIGN SERVICES
+    path('design-services/', views.design_services, name='design_services'),
+
     path('product/<int:id>/', views.product_detail, name='product_detail'),
 
     path('add-to-cart/<int:id>/', views.add_to_cart, name='add_to_cart'),

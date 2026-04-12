@@ -49,7 +49,6 @@ def add_to_cart(request, id):
     product = get_object_or_404(Product, id=id)
     cart = request.session.get('cart', {})
 
-    # 🔥 NUEVO: cantidad
     quantity = int(request.POST.get('quantity', 1))
 
     width = request.POST.get('width')
@@ -58,7 +57,7 @@ def add_to_cart(request, id):
     file = request.FILES.get('file')
 
     price = product.base_price
-    
+
     design_service = request.POST.get('design_service')
 
     if design_service:
@@ -78,7 +77,7 @@ def add_to_cart(request, id):
     cart[unique_key] = {
         'name': product.name,
         'price': price,
-        'quantity': quantity,  # 🔥 ahora sí funciona
+        'quantity': quantity,
         'notes': notes,
         'size': f"{width}ft x {height}ft" if width else "Standard",
         'file': file_url,
@@ -186,3 +185,43 @@ Details:
         return render(request, 'main/success.html')
 
     return render(request, 'main/services.html')
+
+
+# 🎨 DESIGN SERVICES
+def design_services(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        package = request.POST.get('package')
+        details = request.POST.get('details')
+
+        files = request.FILES.getlist('files')
+
+        message = f"""
+New Design Service Request
+
+Name: {name}
+Email: {email}
+Phone: {phone}
+Package: {package}
+
+Details:
+{details}
+"""
+
+        email_message = EmailMessage(
+            'New Design Service Request - Pixel Hub',
+            message,
+            None,
+            ['pixelhubflorida@gmail.com'],
+        )
+
+        for file in files:
+            email_message.attach(file.name, file.read(), file.content_type)
+
+        email_message.send()
+
+        return render(request, 'main/success.html')
+
+    return render(request, 'main/design_services.html')

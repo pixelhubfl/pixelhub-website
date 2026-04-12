@@ -3,11 +3,11 @@
         "model": "main.product",
         "pk": 1,
         "fields": {
-            "name": "Yard Signs",
+            "name": "Yard Signs 24x18 in",
             "description": "Professional outdoor signs perfect for promotions, events, real estate, and business advertising. Durable, weather-resistant, and fully customizable.",
             "image": "yardsigns.jpg",
-            "base_price": 25.0,
-            "is_custom_size": true
+            "base_price": 15.0,
+            "is_custom_size": false
         }
     },
     {
@@ -17,7 +17,7 @@
             "name": "Banners",
             "description": "High-quality custom banners for indoor and outdoor use. Perfect for events, promotions, storefronts, and advertising.",
             "image": "banners.jpg",
-            "base_price": 45.0,
+            "base_price": 4.5,
             "is_custom_size": true
         }
     },
@@ -25,11 +25,11 @@
         "model": "main.product",
         "pk": 3,
         "fields": {
-            "name": "Foam Boards",
+            "name": "Foam Boards 18x24 in",
             "description": "Lightweight foam board signs perfect for presentations, indoor promotions, trade shows, and professional displays. Clean, durable, and easy to mount.",
             "image": "foamboards.jpg",
-            "base_price": 35.0,
-            "is_custom_size": true
+            "base_price": 15.0,
+            "is_custom_size": false
         }
     },
     {
@@ -39,7 +39,7 @@
             "name": "A-Frame Signs",
             "description": "Portable sidewalk A-frame signs ideal for storefront advertising, promotions, events, and directing customer traffic.",
             "image": "aframesigns.jpg",
-            "base_price": 85.0,
+            "base_price": 180.0,
             "is_custom_size": false
         }
     },
@@ -47,11 +47,11 @@
         "model": "main.product",
         "pk": 5,
         "fields": {
-            "name": "PVC Signs",
+            "name": "PVC Signs 18x24 in",
             "description": "Durable custom PVC signs designed for indoor and outdoor business signage, branding, menus, and promotional displays.",
             "image": "pvcsigns.jpg",
-            "base_price": 40.0,
-            "is_custom_size": true
+            "base_price": 25.0,
+            "is_custom_size": false
         }
     },
     {
@@ -61,7 +61,7 @@
             "name": "Acrylic Signs",
             "description": "Premium acrylic signs with a sleek modern finish, perfect for office branding, lobby signs, business displays, and upscale signage.",
             "image": "acrylicsigns.jpg",
-            "base_price": 65.0,
+            "base_price": 35.0,
             "is_custom_size": true
         }
     },
@@ -69,11 +69,11 @@
         "model": "main.product",
         "pk": 7,
         "fields": {
-            "name": "Vinyl Stickers",
+            "name": "Vinyl Stickers 4x4 in",
             "description": "Custom vinyl stickers made with durable weather-resistant material, ideal for branding, packaging, promotions, and personal projects.",
             "image": "stickers.jpg",
-            "base_price": 15.0,
-            "is_custom_size": true
+            "base_price": 2.0,
+            "is_custom_size": false
         }
     },
     {
@@ -83,7 +83,7 @@
             "name": "Window Graphics",
             "description": "Professional custom window graphics for storefronts, branding, promotions, privacy, and decorative business displays.",
             "image": "windowgraphics.jpg",
-            "base_price": 55.0,
+            "base_price": 12.0,
             "is_custom_size": true
         }
     },
@@ -94,7 +94,7 @@
             "name": "Window Perf",
             "description": "Perforated window vinyl allows visibility from inside while displaying full graphics outside. Perfect for storefronts and vehicle windows.",
             "image": "windowperf.jpg",
-            "base_price": 60.0,
+            "base_price": 12.0,
             "is_custom_size": true
         }
     },
@@ -105,7 +105,7 @@
             "name": "Vinyl Lettering",
             "description": "Precision-cut vinyl lettering for windows, walls, storefronts, vehicles, and professional business branding applications.",
             "image": "vinyllettering.jpg",
-            "base_price": 30.0,
+            "base_price": 15.0,
             "is_custom_size": true
         }
     }
