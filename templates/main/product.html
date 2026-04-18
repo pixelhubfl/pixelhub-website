@@ -15,23 +15,35 @@ margin:0;
 font-family:Arial,sans-serif;
 background:#111;
 color:white;
-padding-top:80px; /* 🔥 evita que navbar tape contenido */
+padding-top:80px; /* 🔥 espacio para navbar */
 }
 
 /* NAVBAR */
 .navbar{
 display:flex;
-justify-content:flex-start; /* 🔥 menu a la izquierda */
 align-items:center;
 padding:15px 25px;
 background:#000;
-position:fixed; /* 🔥 ahora es fijo */
+position:fixed;
 top:0;
 left:0;
 width:100%;
 z-index:1000;
 }
 
+/* 🔥 menú a la izquierda */
+.desktop-nav{
+display:flex;
+gap:20px;
+align-items:center;
+}
+
+.desktop-nav a{
+color:white;
+text-decoration:none;
+}
+
+/* 🔥 logo centrado */
 .logo{
 position:absolute;
 left:50%;
@@ -47,17 +59,7 @@ display:none;
 font-size:30px;
 cursor:pointer;
 color:white;
-}
-
-.desktop-nav{
-display:flex;
-gap:20px;
-align-items:center;
-}
-
-.desktop-nav a{
-color:white;
-text-decoration:none;
+margin-right:15px;
 }
 
 .search-input{
@@ -67,6 +69,7 @@ border-radius:20px;
 box-sizing:border-box;
 }
 
+/* 🔥 mobile menu FIX */
 .mobile-menu{
 display:none;
 flex-direction:column;
@@ -78,12 +81,6 @@ top:80px;
 left:0;
 width:100%;
 z-index:999;
-}
-
-.mobile-menu a{
-padding:10px 0;
-color:white;
-text-decoration:none;
 }
 
 /* PRODUCT */
@@ -220,32 +217,7 @@ margin-bottom:20px;
 color:#ff4d00;
 }
 
-.footer-column p,
-.footer-column a{
-color:#ccc;
-text-decoration:none;
-line-height:1.8;
-display:block;
-}
-
-.footer-column a:hover{
-color:#ff4d00;
-}
-
-.payment-icons{
-font-size:30px;
-margin-top:15px;
-}
-
-.copyright{
-margin-top:40px;
-text-align:center;
-padding-top:20px;
-border-top:1px solid #222;
-color:#777;
-}
-
-/* MOBILE (incluye horizontal 🔥) */
+/* 🔥 MOBILE FIX (incluye horizontal) */
 @media (max-width:900px){
 
 .menu-icon{
@@ -294,10 +266,6 @@ text-align:center;
 <a href="/services/">Services</a>
 <a href="/design-services/">Design Services</a>
 <a href="/cart/">Cart 🛒</a>
-
-<form method="GET" action="/shop/">
-<input type="text" name="q" placeholder="Search..." class="search-input">
-</form>
 </div>
 
 <div class="logo">
@@ -309,17 +277,80 @@ text-align:center;
 </div>
 
 <div class="mobile-menu" id="mobileMenu">
-
-<form method="GET" action="/shop/" style="margin-bottom:15px;">
-<input type="text" name="q" placeholder="Search..." class="search-input" style="width:100%;">
-</form>
-
 <a href="/">Home</a>
 <a href="/shop/">Shop</a>
 <a href="/services/">Services</a>
 <a href="/design-services/">Design Services</a>
 <a href="/cart/">Cart 🛒</a>
+</div>
+
+<!-- 🔥 TODO TU PRODUCTO SIGUE IGUAL -->
+<div class="container">
+
+<div class="product-gallery">
+<img src="{% static 'images/' %}{{ product.image }}">
+</div>
+
+<div class="details">
+
+<h1>{{ product.name }}</h1>
+
+<div class="price">
+Starting at ${{ product.base_price }}
+</div>
+
+<div class="description">
+{{ product.description }}
+</div>
+
+<form method="POST" action="/add-to-cart/{{ product.id }}/" enctype="multipart/form-data">
+{% csrf_token %}
+
+{% if product.is_custom_size %}
+<div class="option-group">
+<input type="number" step="0.1" id="width" name="width" placeholder="Width (ft)">
+<br><br>
+<input type="number" step="0.1" id="height" name="height" placeholder="Height (ft)">
+</div>
+{% endif %}
+
+<div class="option-group">
+<input type="number" id="quantity" name="quantity" value="1" min="1">
+</div>
+
+<div class="option-group checkbox">
+<input type="checkbox" id="design" name="design_service" value="yes">
+<label>I need help with my design (+$30 one-time fee)</label>
+</div>
+
+<div class="option-group">
+<input type="file" name="file">
+</div>
+
+<div class="option-group">
+<textarea name="notes" placeholder="Additional Notes"></textarea>
+</div>
+
+<div class="live-price">
+<p>Subtotal: $<span id="subtotal">0</span></p>
+<p>Design Fee: $<span id="designFee">0</span></p>
+<p class="total">Total: $<span id="total">0</span></p>
+</div>
+
+<button class="btn">ADD TO CART</button>
+
+</form>
 
 </div>
 
-<!-- RESTO IGUAL (NO CAMBIÉ NADA MÁS) -->
+</div>
+
+<script>
+function toggleMenu(){
+let menu=document.getElementById("mobileMenu");
+menu.style.display = (menu.style.display==="flex") ? "none" : "flex";
+}
+</script>
+
+</body>
+</html>
