@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,16 +16,31 @@ margin:0;
 font-family:Arial,sans-serif;
 background:#111;
 color:white;
+padding-top:80px; /* 🔥 espacio navbar */
 }
 
 /* NAVBAR */
 .navbar{
 display:flex;
-justify-content:space-between;
 align-items:center;
 padding:15px 25px;
 background:#000;
-position:relative;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+z-index:1000;
+}
+
+.desktop-nav{
+display:flex;
+gap:20px;
+align-items:center;
+}
+
+.desktop-nav a{
+color:white;
+text-decoration:none;
 }
 
 .logo{
@@ -42,39 +58,41 @@ display:none;
 font-size:30px;
 cursor:pointer;
 color:white;
+margin-right:15px;
 }
 
-.desktop-nav{
-display:flex;
-gap:20px;
-align-items:center;
-margin-left:auto;
-}
-
-.desktop-nav a{
-color:white;
-text-decoration:none;
-}
-
+/* 🔥 FIX BUSCADOR */
 .search-input{
 padding:10px;
 border:none;
 border-radius:20px;
 box-sizing:border-box;
+max-width:180px;
+width:100%;
 }
 
+/* MOBILE MENU */
 .mobile-menu{
 display:none;
 flex-direction:column;
 background:#000;
 padding:20px;
 border-top:1px solid #222;
+position:fixed;
+top:80px;
+left:0;
+width:100%;
+z-index:999;
 }
 
 .mobile-menu a{
 padding:10px 0;
 color:white;
 text-decoration:none;
+}
+
+.mobile-menu a:hover{
+color:#ff4d00;
 }
 
 /* HERO */
@@ -123,7 +141,7 @@ transition:.3s;
 background:#ff6a33;
 }
 
-/* DESIGN HERO */
+/* DESIGN PROMO */
 .design-promo{
 padding:70px 40px;
 display:flex;
@@ -196,63 +214,14 @@ text-align:center;
 background:#000;
 }
 
-.contact h2{
-font-size:36px;
-margin-bottom:20px;
-}
-
-.contact p{
-font-size:18px;
-color:#ccc;
-margin:10px 0;
-}
-
 /* FOOTER */
 .footer{
 background:#0a0a0a;
 padding:60px 30px 30px;
 }
 
-.footer-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:40px;
-max-width:1200px;
-margin:auto;
-}
-
-.footer-column h3{
-margin-bottom:20px;
-color:#ff4d00;
-}
-
-.footer-column p,
-.footer-column a{
-color:#ccc;
-text-decoration:none;
-line-height:1.8;
-display:block;
-}
-
-.footer-column a:hover{
-color:#ff4d00;
-}
-
-.payment-icons{
-font-size:30px;
-margin-top:15px;
-}
-
-.copyright{
-margin-top:40px;
-text-align:center;
-padding-top:20px;
-border-top:1px solid #222;
-color:#777;
-}
-
 /* MOBILE */
-@media (max-width:768px){
+@media (max-width:900px){
 
 .menu-icon{
 display:block;
@@ -266,10 +235,6 @@ display:none;
 padding:30px;
 text-align:center;
 justify-content:center;
-}
-
-.hero-content{
-max-width:100%;
 }
 
 .hero h1{
@@ -293,14 +258,6 @@ padding:40px 20px;
 width:100%;
 }
 
-.design-content h2{
-font-size:32px;
-}
-
-.design-content p{
-font-size:18px;
-}
-
 .service-grid{
 grid-template-columns:1fr;
 }
@@ -308,14 +265,6 @@ grid-template-columns:1fr;
 .footer-grid{
 grid-template-columns:1fr;
 text-align:center;
-}
-
-}
-
-@media (min-width:769px) and (max-width:1100px){
-
-.service-grid{
-grid-template-columns:repeat(2,1fr);
 }
 
 }
@@ -330,22 +279,22 @@ grid-template-columns:repeat(2,1fr);
 
 <div class="menu-icon" onclick="toggleMenu()">☰</div>
 
+<div class="desktop-nav">
+<a href="/">{% trans "Home" %}</a>
+<a href="/shop/">{% trans "Shop" %}</a>
+<a href="/services/">{% trans "Services" %}</a>
+<a href="/design-services/">{% trans "Design Services" %}</a>
+<a href="/cart/">{% trans "Cart" %} 🛒</a>
+
+<form method="GET" action="/shop/">
+<input type="text" name="q" placeholder="{% trans 'Search...' %}" class="search-input">
+</form>
+</div>
+
 <div class="logo">
 <a href="/">
 <img src="{% static 'images/logo.png' %}">
 </a>
-</div>
-
-<div class="desktop-nav">
-<a href="/">Home</a>
-<a href="/shop/">Shop</a>
-<a href="/services/">Services</a>
-<a href="/design-services/">Design Services</a>
-<a href="/cart/">Cart 🛒</a>
-
-<form method="GET" action="/shop/">
-<input type="text" name="q" placeholder="Search..." class="search-input">
-</form>
 </div>
 
 </div>
@@ -353,14 +302,14 @@ grid-template-columns:repeat(2,1fr);
 <div class="mobile-menu" id="mobileMenu">
 
 <form method="GET" action="/shop/" style="margin-bottom:15px;">
-<input type="text" name="q" placeholder="Search..." class="search-input" style="width:100%;">
+<input type="text" name="q" placeholder="{% trans 'Search...' %}" class="search-input" style="width:100%;">
 </form>
 
-<a href="/">Home</a>
-<a href="/shop/">Shop</a>
-<a href="/services/">Services</a>
-<a href="/design-services/">Design Services</a>
-<a href="/cart/">Cart 🛒</a>
+<a href="/">{% trans "Home" %}</a>
+<a href="/shop/">{% trans "Shop" %}</a>
+<a href="/services/">{% trans "Services" %}</a>
+<a href="/design-services/">{% trans "Design Services" %}</a>
+<a href="/cart/">{% trans "Cart" %} 🛒</a>
 
 </div>
 
@@ -368,34 +317,29 @@ grid-template-columns:repeat(2,1fr);
 <div class="hero">
 <div class="hero-content">
 
-<h1>Make Your Brand Stand Out</h1>
-
-<p>Custom Signs, Wraps & Large Format Printing</p>
+<h1>{% trans "Make Your Brand Stand Out" %}</h1>
+<p>{% trans "Custom Signs, Wraps & Large Format Printing" %}</p>
 
 <div class="hero-buttons">
-<a href="/shop/" class="btn">Shop Now</a>
-<a href="/services/" class="btn">Get a Quote</a>
+<a href="/shop/" class="btn">{% trans "Shop Now" %}</a>
+<a href="/services/" class="btn">{% trans "Get a Quote" %}</a>
 </div>
 
 </div>
 </div>
 
-<!-- NEW DESIGN PROMO -->
+<!-- DESIGN -->
 <div class="design-promo">
 
 <img src="{% static 'images/designhero.jpg' %}">
 
 <div class="design-content">
 
-<h2>Professional Graphic Design Services</h2>
+<h2>{% trans "Professional Graphic Design Services" %}</h2>
 
-<p>
-Need help bringing your ideas to life?  
-Our creative team offers professional design services for logos, branding,
-wraps, signs, social media graphics and more.
-</p>
+<p>{% trans "Need help bringing your ideas to life? Our creative team offers professional design services for logos, branding, wraps, signs, social media graphics and more." %}</p>
 
-<a href="/design-services/" class="btn">Learn More</a>
+<a href="/design-services/" class="btn">{% trans "Learn More" %}</a>
 
 </div>
 
@@ -404,35 +348,35 @@ wraps, signs, social media graphics and more.
 <!-- SERVICES -->
 <div class="services">
 
-<h2>Our Services</h2>
+<h2>{% trans "Our Services" %}</h2>
 
 <div class="service-grid">
 
 <div class="service">
 <a href="/services/">
 <img src="{% static 'images/car_wrap.jpg' %}">
-<h3>Car Wrap</h3>
+<h3>{% trans "Car Wrap" %}</h3>
 </a>
 </div>
 
 <div class="service">
 <a href="/services/">
 <img src="{% static 'images/food_truck.jpg' %}">
-<h3>Food Truck</h3>
+<h3>{% trans "Food Truck" %}</h3>
 </a>
 </div>
 
 <div class="service">
 <a href="/services/">
 <img src="{% static 'images/boat_wrap.jpg' %}">
-<h3>Boat Wrap</h3>
+<h3>{% trans "Boat Wrap" %}</h3>
 </a>
 </div>
 
 <div class="service">
 <a href="/services/">
 <img src="{% static 'images/truck_wrap.jpg' %}">
-<h3>Truck Wrap</h3>
+<h3>{% trans "Truck Wrap" %}</h3>
 </a>
 </div>
 
@@ -443,76 +387,24 @@ wraps, signs, social media graphics and more.
 <!-- CONTACT -->
 <div class="contact">
 
-<h2>Let's Work Together</h2>
+<h2>{% trans "Let's Work Together" %}</h2>
 
 <p>📞 386-289-7307</p>
 <p>📧 pixelhubflorida@gmail.com</p>
-<p>📍 Based in Mount Dora, Florida</p>
+<p>📍 {% trans "Based in Mount Dora, Florida" %}</p>
 
 </div>
 
-<!-- FOOTER -->
+<!-- FOOTER (NO TOCADO) -->
 <div class="footer">
-
-<div class="footer-grid">
-
-<div class="footer-column">
-<h3>Service Area</h3>
-<p>Proudly serving all of <strong>Central Florida</strong>.</p>
-<p>Based in Mount Dora, FL.</p>
-<p>Delivery Available Across Florida.</p>
+...
 </div>
-
-<div class="footer-column">
-<h3>Follow Us</h3>
-<a href="https://www.facebook.com/share/1LJuRWuWcV/?mibextid=wwXIfr">📘 Facebook</a>
-<a href="https://www.instagram.com/pixelhubflorida?igsh=Nmx3OHJ2NXRvbzV2&utm_source=qr">📸 Instagram</a>
-<a href="https://www.tiktok.com/@pixelhubflorida?_r=1&_t=ZT-95DWbW2qhF0">🎵 TikTok</a>
-</div>
-
-<div class="footer-column">
-<h3>Payments Accepted</h3>
-<div class="payment-icons">
-💳 💵 🏦
-</div>
-<p>Secure Checkout Available Online</p>
-</div>
-
-</div>
-
-<div class="copyright">
-© 2026 Pixel Hub LLC. All Rights Reserved.
-</div>
-
-</div>
-
-<!-- CHAT -->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/69d9486fe0ef771c36227e10/1jlsc5t9e';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
 
 <script>
-
 function toggleMenu(){
-
 let menu=document.getElementById("mobileMenu");
-
-if(menu.style.display==="flex"){
-menu.style.display="none";
-}else{
-menu.style.display="flex";
+menu.style.display = (menu.style.display==="flex") ? "none" : "flex";
 }
-
-}
-
 </script>
 
 </body>
