@@ -15,16 +15,20 @@ margin:0;
 font-family:Arial,sans-serif;
 background:#111;
 color:white;
+padding-top:80px;
 }
 
 /* NAVBAR */
 .navbar{
 display:flex;
-justify-content:space-between;
 align-items:center;
 padding:15px 25px;
 background:#000;
-position:relative;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+z-index:1000;
 }
 
 .logo{
@@ -42,13 +46,13 @@ display:none;
 font-size:30px;
 cursor:pointer;
 color:white;
+margin-right:15px;
 }
 
 .desktop-nav{
 display:flex;
 gap:20px;
 align-items:center;
-margin-left:auto;
 }
 
 .desktop-nav a{
@@ -61,6 +65,8 @@ padding:10px;
 border:none;
 border-radius:20px;
 box-sizing:border-box;
+max-width:180px;
+width:100%;
 }
 
 .mobile-menu{
@@ -69,6 +75,11 @@ flex-direction:column;
 background:#000;
 padding:20px;
 border-top:1px solid #222;
+position:fixed;
+top:80px;
+left:0;
+width:100%;
+z-index:999;
 }
 
 .mobile-menu a{
@@ -224,15 +235,6 @@ border-top:1px solid #222;
 color:#777;
 }
 
-/* TABLET */
-@media (max-width:1100px){
-
-.products{
-grid-template-columns:repeat(2,1fr);
-}
-
-}
-
 /* MOBILE */
 @media (max-width:768px){
 
@@ -278,12 +280,6 @@ text-align:center;
 
 <div class="menu-icon" onclick="toggleMenu()">☰</div>
 
-<div class="logo">
-<a href="/">
-<img src="{% static 'images/logo.png' %}">
-</a>
-</div>
-
 <div class="desktop-nav">
 <a href="/">Home</a>
 <a href="/shop/">Shop</a>
@@ -294,6 +290,12 @@ text-align:center;
 <form method="GET" action="/shop/">
 <input type="text" name="q" placeholder="Search..." value="{{ query|default:'' }}" class="search-input">
 </form>
+</div>
+
+<div class="logo">
+<a href="/">
+<img src="{% static 'images/logo.png' %}">
+</a>
 </div>
 
 </div>
@@ -395,33 +397,11 @@ text-align:center;
 
 </div>
 
-<!-- CHAT -->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/69d9486fe0ef771c36227e10/1jlsc5t9e';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-
 <script>
-
 function toggleMenu(){
-
 let menu=document.getElementById("mobileMenu");
-
-if(menu.style.display==="flex"){
-menu.style.display="none";
-}else{
-menu.style.display="flex";
+menu.style.display = (menu.style.display==="flex") ? "none" : "flex";
 }
-
-}
-
 </script>
 
 </body>
