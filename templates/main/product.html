@@ -15,7 +15,7 @@ margin:0;
 font-family:Arial,sans-serif;
 background:#111;
 color:white;
-padding-top:80px; /* 🔥 espacio para navbar */
+padding-top:80px; /* 🔥 espacio para navbar fijo */
 }
 
 /* NAVBAR */
@@ -31,7 +31,7 @@ width:100%;
 z-index:1000;
 }
 
-/* 🔥 menú a la izquierda */
+/* MENU IZQUIERDA */
 .desktop-nav{
 display:flex;
 gap:20px;
@@ -43,7 +43,7 @@ color:white;
 text-decoration:none;
 }
 
-/* 🔥 logo centrado */
+/* LOGO CENTRO */
 .logo{
 position:absolute;
 left:50%;
@@ -54,6 +54,7 @@ transform:translateX(-50%);
 height:50px;
 }
 
+/* HAMBURGUESA */
 .menu-icon{
 display:none;
 font-size:30px;
@@ -69,7 +70,7 @@ border-radius:20px;
 box-sizing:border-box;
 }
 
-/* 🔥 mobile menu FIX */
+/* MOBILE MENU */
 .mobile-menu{
 display:none;
 flex-direction:column;
@@ -83,7 +84,18 @@ width:100%;
 z-index:999;
 }
 
-/* PRODUCT */
+/* 🔥 FIX COLOR MORADO */
+.mobile-menu a{
+padding:10px 0;
+color:white;
+text-decoration:none;
+}
+
+.mobile-menu a:hover{
+color:#ff4d00;
+}
+
+/* PRODUCT (NO TOCADO) */
 .container{
 display:flex;
 gap:50px;
@@ -187,34 +199,10 @@ text-align:center;
 background:#000;
 }
 
-.contact h2{
-font-size:36px;
-margin-bottom:20px;
-}
-
-.contact p{
-font-size:18px;
-color:#ccc;
-margin:10px 0;
-}
-
 /* FOOTER */
 .footer{
 background:#0a0a0a;
 padding:60px 30px 30px;
-}
-
-.footer-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:40px;
-max-width:1200px;
-margin:auto;
-}
-
-.footer-column h3{
-margin-bottom:20px;
-color:#ff4d00;
 }
 
 /* 🔥 MOBILE FIX (incluye horizontal) */
@@ -266,6 +254,10 @@ text-align:center;
 <a href="/services/">Services</a>
 <a href="/design-services/">Design Services</a>
 <a href="/cart/">Cart 🛒</a>
+
+<form method="GET" action="/shop/">
+<input type="text" name="q" placeholder="Search..." class="search-input">
+</form>
 </div>
 
 <div class="logo">
@@ -276,15 +268,22 @@ text-align:center;
 
 </div>
 
+<!-- 🔥 MOBILE MENU CON SEARCH RESTAURADO -->
 <div class="mobile-menu" id="mobileMenu">
+
+<form method="GET" action="/shop/" style="margin-bottom:15px;">
+<input type="text" name="q" placeholder="Search..." class="search-input" style="width:100%;">
+</form>
+
 <a href="/">Home</a>
 <a href="/shop/">Shop</a>
 <a href="/services/">Services</a>
 <a href="/design-services/">Design Services</a>
 <a href="/cart/">Cart 🛒</a>
+
 </div>
 
-<!-- 🔥 TODO TU PRODUCTO SIGUE IGUAL -->
+<!-- PRODUCT (100% intacto) -->
 <div class="container">
 
 <div class="product-gallery">
@@ -346,10 +345,48 @@ Starting at ${{ product.base_price }}
 </div>
 
 <script>
+
 function toggleMenu(){
 let menu=document.getElementById("mobileMenu");
 menu.style.display = (menu.style.display==="flex") ? "none" : "flex";
 }
+
+function updatePrice(){
+
+let basePrice = parseFloat("{{ product.base_price|default:0 }}");
+
+let qty = parseFloat(document.getElementById("quantity").value) || 1;
+
+let widthEl = document.getElementById("width");
+let heightEl = document.getElementById("height");
+
+if(widthEl && heightEl){
+let w = parseFloat(widthEl.value) || 0;
+let h = parseFloat(heightEl.value) || 0;
+if(w > 0 && h > 0){
+basePrice = w * h * basePrice;
+}
+}
+
+let subtotal = basePrice * qty;
+
+let designEl = document.getElementById("design");
+let design = designEl ? designEl.checked : false;
+
+let designFee = design ? 30 : 0;
+
+let total = subtotal + designFee;
+
+document.getElementById("subtotal").innerText = subtotal.toFixed(2);
+document.getElementById("designFee").innerText = designFee.toFixed(2);
+document.getElementById("total").innerText = total.toFixed(2);
+
+}
+
+document.addEventListener("input", updatePrice);
+document.addEventListener("change", updatePrice);
+window.onload = updatePrice;
+
 </script>
 
 </body>
