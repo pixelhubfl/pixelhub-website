@@ -15,7 +15,7 @@ margin:0;
 font-family:Arial,sans-serif;
 background:#111;
 color:white;
-padding-top:80px; /* 🔥 espacio para navbar fijo */
+padding-top:80px;
 }
 
 /* NAVBAR */
@@ -31,7 +31,6 @@ width:100%;
 z-index:1000;
 }
 
-/* MENU IZQUIERDA */
 .desktop-nav{
 display:flex;
 gap:20px;
@@ -43,7 +42,6 @@ color:white;
 text-decoration:none;
 }
 
-/* LOGO CENTRO */
 .logo{
 position:absolute;
 left:50%;
@@ -54,7 +52,6 @@ transform:translateX(-50%);
 height:50px;
 }
 
-/* HAMBURGUESA */
 .menu-icon{
 display:none;
 font-size:30px;
@@ -63,11 +60,14 @@ color:white;
 margin-right:15px;
 }
 
+/* 🔥 FIX BUSCADOR */
 .search-input{
 padding:10px;
 border:none;
 border-radius:20px;
 box-sizing:border-box;
+max-width:180px;
+width:100%;
 }
 
 /* MOBILE MENU */
@@ -84,7 +84,6 @@ width:100%;
 z-index:999;
 }
 
-/* 🔥 FIX COLOR MORADO */
 .mobile-menu a{
 padding:10px 0;
 color:white;
@@ -95,17 +94,13 @@ text-decoration:none;
 color:#ff4d00;
 }
 
-/* PRODUCT (NO TOCADO) */
+/* PRODUCT */
 .container{
 display:flex;
 gap:50px;
 padding:50px;
 max-width:1400px;
 margin:auto;
-}
-
-.product-gallery{
-flex:1;
 }
 
 .product-gallery img{
@@ -156,10 +151,6 @@ gap:10px;
 align-items:center;
 }
 
-.checkbox input{
-width:auto;
-}
-
 .btn{
 width:100%;
 padding:18px;
@@ -172,17 +163,11 @@ border-radius:10px;
 cursor:pointer;
 }
 
-/* LIVE PRICE */
 .live-price{
 margin-top:20px;
 background:#222;
 padding:20px;
 border-radius:12px;
-}
-
-.live-price p{
-margin:5px 0;
-color:#ccc;
 }
 
 .live-price .total{
@@ -192,20 +177,7 @@ font-weight:bold;
 margin-top:10px;
 }
 
-/* CONTACT */
-.contact{
-padding:60px 20px;
-text-align:center;
-background:#000;
-}
-
-/* FOOTER */
-.footer{
-background:#0a0a0a;
-padding:60px 30px 30px;
-}
-
-/* 🔥 MOBILE FIX (incluye horizontal) */
+/* MOBILE */
 @media (max-width:900px){
 
 .menu-icon{
@@ -219,21 +191,10 @@ display:none;
 .container{
 flex-direction:column;
 padding:0;
-gap:0;
-}
-
-.product-gallery img{
-border-radius:0;
 }
 
 .details{
-border-radius:0;
 padding:25px;
-}
-
-.footer-grid{
-grid-template-columns:1fr;
-text-align:center;
 }
 
 }
@@ -243,7 +204,6 @@ text-align:center;
 </head>
 <body>
 
-<!-- NAVBAR -->
 <div class="navbar">
 
 <div class="menu-icon" onclick="toggleMenu()">☰</div>
@@ -268,7 +228,6 @@ text-align:center;
 
 </div>
 
-<!-- 🔥 MOBILE MENU CON SEARCH RESTAURADO -->
 <div class="mobile-menu" id="mobileMenu">
 
 <form method="GET" action="/shop/" style="margin-bottom:15px;">
@@ -283,7 +242,6 @@ text-align:center;
 
 </div>
 
-<!-- PRODUCT (100% intacto) -->
 <div class="container">
 
 <div class="product-gallery">
@@ -345,48 +303,10 @@ Starting at ${{ product.base_price }}
 </div>
 
 <script>
-
 function toggleMenu(){
 let menu=document.getElementById("mobileMenu");
 menu.style.display = (menu.style.display==="flex") ? "none" : "flex";
 }
-
-function updatePrice(){
-
-let basePrice = parseFloat("{{ product.base_price|default:0 }}");
-
-let qty = parseFloat(document.getElementById("quantity").value) || 1;
-
-let widthEl = document.getElementById("width");
-let heightEl = document.getElementById("height");
-
-if(widthEl && heightEl){
-let w = parseFloat(widthEl.value) || 0;
-let h = parseFloat(heightEl.value) || 0;
-if(w > 0 && h > 0){
-basePrice = w * h * basePrice;
-}
-}
-
-let subtotal = basePrice * qty;
-
-let designEl = document.getElementById("design");
-let design = designEl ? designEl.checked : false;
-
-let designFee = design ? 30 : 0;
-
-let total = subtotal + designFee;
-
-document.getElementById("subtotal").innerText = subtotal.toFixed(2);
-document.getElementById("designFee").innerText = designFee.toFixed(2);
-document.getElementById("total").innerText = total.toFixed(2);
-
-}
-
-document.addEventListener("input", updatePrice);
-document.addEventListener("change", updatePrice);
-window.onload = updatePrice;
-
 </script>
 
 </body>
