@@ -39,6 +39,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # 🔥 AGREGADO
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -88,10 +89,21 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# LANGUAGE
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+# 🌍 LANGUAGE (ACTUALIZADO)
+LANGUAGE_CODE = 'en'
+
 USE_I18N = True
+
+LANGUAGES = [
+    ('en', 'English'),
+    ('es', 'Spanish'),
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
+
+TIME_ZONE = 'UTC'
 USE_TZ = True
 
 
