@@ -56,15 +56,15 @@ def add_to_cart(request, id):
     notes = request.POST.get('notes')
     file = request.FILES.get('file')
 
-    price = product.base_price
+    base_price = product.base_price
 
     design_service = request.POST.get('design_service')
 
-    if design_service:
-        price += 30
+    # 🔥 FIX: separar design fee
+    design_fee = 30 if design_service else 0
 
     if product.is_custom_size and width and height:
-        price = float(width) * float(height) * product.base_price
+        base_price = float(width) * float(height) * product.base_price
 
     file_url = None
     if file:
@@ -76,12 +76,13 @@ def add_to_cart(request, id):
 
     cart[unique_key] = {
         'name': product.name,
-        'price': price,
+        'price': base_price,  # 🔥 solo producto
         'quantity': quantity,
         'notes': notes,
         'size': f"{width}ft x {height}ft" if width else "Standard",
         'file': file_url,
         'design': True if design_service else False,
+        'design_fee': design_fee,  # 🔥 nuevo campo
     }
 
     request.session['cart'] = cart
@@ -90,7 +91,17 @@ def add_to_cart(request, id):
 
 def cart(request):
     cart = request.session.get('cart', {})
-    total = sum(item['price'] * item['quantity'] for item in cart.values())
+
+    total = 0
+
+    for item in cart.values():
+        item_total = item['price'] * item['quantity']
+
+        # 🔥 FIX: sumar diseño solo una vez
+        if item.get('design'):
+            item_total += item.get('design_fee', 0)
+
+        total += item_total
 
     return render(request, 'main/cart.html', {
         'cart': cart,
@@ -118,6 +129,7 @@ def create_checkout_session(request):
     line_items = []
 
     for item in cart.values():
+        # 🧾 Producto
         line_items.append({
             'price_data': {
                 'currency': 'usd',
@@ -128,6 +140,19 @@ def create_checkout_session(request):
             },
             'quantity': item['quantity'],
         })
+
+        # 🎨 Diseño (una sola vez)
+        if item.get('design'):
+            line_items.append({
+                'price_data': {
+                    'currency': 'usd',
+                    'product_data': {
+                        'name': f"Design Service - {item['name']}",
+                    },
+                    'unit_amount': int(item.get('design_fee', 30) * 100),
+                },
+                'quantity': 1,  # 🔥 clave
+            })
 
     domain = 'https://pixelhubfl.com'
 

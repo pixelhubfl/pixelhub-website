@@ -154,6 +154,26 @@ border-radius:10px;
 cursor:pointer;
 }
 
+/* LIVE PRICE */
+.live-price{
+margin-top:20px;
+background:#222;
+padding:20px;
+border-radius:12px;
+}
+
+.live-price p{
+margin:5px 0;
+color:#ccc;
+}
+
+.live-price .total{
+font-size:22px;
+color:#ff4d00;
+font-weight:bold;
+margin-top:10px;
+}
+
 /* CONTACT */
 .contact{
 padding:60px 20px;
@@ -328,19 +348,19 @@ Starting at ${{ product.base_price }}
 
 {% if product.is_custom_size %}
 <div class="option-group">
-<input type="text" name="width" placeholder="Width (ft)">
+<input type="number" step="0.1" id="width" name="width" placeholder="Width (ft)">
 <br><br>
-<input type="text" name="height" placeholder="Height (ft)">
+<input type="number" step="0.1" id="height" name="height" placeholder="Height (ft)">
 </div>
 {% endif %}
 
 <div class="option-group">
-<input type="number" name="quantity" value="1" min="1">
+<input type="number" id="quantity" name="quantity" value="1" min="1">
 </div>
 
 <div class="option-group checkbox">
-<input type="checkbox" name="design_service" value="yes">
-<label>I need help with my design (+$30)</label>
+<input type="checkbox" id="design" name="design_service" value="yes">
+<label>I need help with my design (+$30 one-time fee)</label>
 </div>
 
 <div class="option-group">
@@ -349,6 +369,13 @@ Starting at ${{ product.base_price }}
 
 <div class="option-group">
 <textarea name="notes" placeholder="Additional Notes"></textarea>
+</div>
+
+<!-- LIVE PRICE -->
+<div class="live-price">
+<p>Subtotal: $<span id="subtotal">0</span></p>
+<p>Design Fee: $<span id="designFee">0</span></p>
+<p class="total">Total: $<span id="total">0</span></p>
 </div>
 
 <button class="btn">ADD TO CART</button>
@@ -408,16 +435,45 @@ Starting at ${{ product.base_price }}
 <script>
 
 function toggleMenu(){
-
 let menu=document.getElementById("mobileMenu");
-
-if(menu.style.display==="flex"){
-menu.style.display="none";
-}else{
-menu.style.display="flex";
+menu.style.display = (menu.style.display==="flex") ? "none" : "flex";
 }
 
+function updatePrice(){
+
+let basePrice = parseFloat("{{ product.base_price|default:0 }}");
+
+let qty = parseFloat(document.getElementById("quantity").value) || 1;
+
+let widthEl = document.getElementById("width");
+let heightEl = document.getElementById("height");
+
+if(widthEl && heightEl){
+let w = parseFloat(widthEl.value) || 0;
+let h = parseFloat(heightEl.value) || 0;
+if(w > 0 && h > 0){
+basePrice = w * h * basePrice;
 }
+}
+
+let subtotal = basePrice * qty;
+
+let designEl = document.getElementById("design");
+let design = designEl ? designEl.checked : false;
+
+let designFee = design ? 30 : 0;
+
+let total = subtotal + designFee;
+
+document.getElementById("subtotal").innerText = subtotal.toFixed(2);
+document.getElementById("designFee").innerText = designFee.toFixed(2);
+document.getElementById("total").innerText = total.toFixed(2);
+
+}
+
+document.addEventListener("input", updatePrice);
+document.addEventListener("change", updatePrice);
+window.onload = updatePrice;
 
 </script>
 

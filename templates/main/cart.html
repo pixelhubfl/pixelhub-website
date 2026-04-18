@@ -308,7 +308,7 @@ text-align:center;
 <p><strong>Notes:</strong> {{ item.notes }}</p>
 
 {% if item.design %}
-<p><strong>Design Service:</strong> Yes (+$30)</p>
+<p><strong>Design Service:</strong> Yes (+${{ item.design_fee }}) - one-time fee</p>
 {% endif %}
 
 {% if item.file %}
