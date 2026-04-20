@@ -21,13 +21,13 @@ msgid "Services"
 msgstr "Servicios"
 
 msgid "Design Services"
-msgstr "Servicios de Diseno"
+msgstr "Servicios de Diseño"
 
 msgid "Search..."
 msgstr "Buscar..."
 
 msgid "Your Cart"
-msgstr "Tu Carrito"
+msgstr "Tu carrito"
 
 msgid "Price"
 msgstr "Precio"
@@ -36,22 +36,22 @@ msgid "Quantity"
 msgstr "Cantidad"
 
 msgid "Size"
-msgstr "Tamano"
+msgstr "Tamaño"
 
 msgid "Notes"
 msgstr "Notas"
 
 msgid "Design Service"
-msgstr "Servicio de Diseno"
+msgstr "Servicio de diseño"
 
 msgid "Yes"
-msgstr "Si"
+msgstr "Sí"
 
 msgid "one-time fee"
-msgstr "pago unico"
+msgstr "pago único"
 
 msgid "View Uploaded File"
-msgstr "Ver Archivo"
+msgstr "Ver archivo"
 
 msgid "Remove Item"
 msgstr "Eliminar"
@@ -60,100 +60,100 @@ msgid "Total"
 msgstr "Total"
 
 msgid "Proceed to Checkout"
-msgstr "Ir al Pago"
+msgstr "Ir al pago"
 
 msgid "Let's Work Together"
-msgstr "Trabajemos Juntos"
+msgstr "Trabajemos juntos"
 
 msgid "Based in Mount Dora, Florida"
 msgstr "Ubicados en Mount Dora, Florida"
 
 msgid "Professional Graphic Design Services"
-msgstr "Servicios Profesionales de Diseno Grafico"
+msgstr "Servicios profesionales de diseño gráfico"
 
 msgid "Bring Your Ideas to Life With Pixel Hub"
 msgstr "Haz realidad tus ideas con Pixel Hub"
 
 msgid "Basic Design Assistance"
-msgstr "Asistencia Basica de Diseno"
+msgstr "Asistencia básica de diseño"
 
 msgid "Simple design adjustments, artwork setup, and minor edits."
-msgstr "Ajustes simples de diseno y ediciones menores"
+msgstr "Ajustes simples de diseño, preparación de archivos y ediciones menores."
 
 msgid "Custom Graphic Design"
-msgstr "Diseno Grafico Personalizado"
+msgstr "Diseño gráfico personalizado"
 
 msgid "Full custom design project created from scratch."
-msgstr "Diseno personalizado desde cero"
+msgstr "Diseño completamente personalizado desde cero."
 
 msgid "Logo Design Package"
-msgstr "Paquete de Logo"
+msgstr "Paquete de diseño de logo"
 
 msgid "Professional logo and branding concept creation."
-msgstr "Creacion profesional de logos"
+msgstr "Creación profesional de logos y branding."
 
 msgid "Request Design Help"
-msgstr "Solicitar Diseno"
+msgstr "Solicitar diseño"
 
 msgid "Full Name"
-msgstr "Nombre Completo"
+msgstr "Nombre completo"
 
 msgid "Email"
-msgstr "Correo Electronico"
+msgstr "Correo electrónico"
 
 msgid "Phone Number"
-msgstr "Telefono"
+msgstr "Número de teléfono"
 
 msgid "Basic Design Assistance - $30"
-msgstr "Diseno Basico - $30"
+msgstr "Asistencia básica de diseño - $30"
 
 msgid "Custom Graphic Design - $75"
-msgstr "Diseno Personalizado - $75"
+msgstr "Diseño gráfico personalizado - $75"
 
 msgid "Logo Design Package - $100"
-msgstr "Paquete de Logo - $100"
+msgstr "Paquete de diseño de logo - $100"
 
 msgid "Describe your design needs"
-msgstr "Describe tu diseno"
+msgstr "Describe tus necesidades de diseño"
 
 msgid "Submit Design Request"
-msgstr "Enviar Solicitud"
+msgstr "Enviar solicitud"
 
 msgid "Make Your Brand Stand Out"
 msgstr "Haz que tu marca destaque"
 
 msgid "Custom Signs, Wraps & Large Format Printing"
-msgstr "Letreros, wraps e impresion"
+msgstr "Letreros personalizados, wraps e impresión de gran formato"
 
 msgid "Shop Now"
-msgstr "Comprar"
+msgstr "Comprar ahora"
 
 msgid "Get a Quote"
-msgstr "Cotizar"
+msgstr "Solicitar cotización"
 
 msgid "Learn More"
-msgstr "Ver Mas"
+msgstr "Saber más"
 
 msgid "Our Services"
-msgstr "Servicios"
+msgstr "Nuestros servicios"
 
 msgid "Car Wrap"
-msgstr "Wrap de Carro"
+msgstr "Wrap de carro"
 
 msgid "Food Truck"
-msgstr "Food Truck"
+msgstr "Food truck"
 
 msgid "Boat Wrap"
-msgstr "Wrap de Bote"
+msgstr "Wrap de bote"
 
 msgid "Truck Wrap"
-msgstr "Wrap de Camion"
+msgstr "Wrap de camión"
 
 msgid "Request a Quote"
-msgstr "Solicitar Cotizacion"
+msgstr "Solicitar cotización"
 
 msgid "Food Truck Wrap"
-msgstr "Wrap Food Truck"
+msgstr "Wrap para food truck"
 
 msgid "Describe your project"
 msgstr "Describe tu proyecto"
