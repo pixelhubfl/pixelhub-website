@@ -144,6 +144,17 @@ button:hover{
 background:#ff6a33;
 }
 
+/* 🔥 MENSAJE DE ÉXITO */
+.success-message{
+background:#0f5132;
+color:#d1e7dd;
+padding:15px;
+border-radius:10px;
+margin-bottom:20px;
+text-align:center;
+font-weight:bold;
+}
+
 /* CONTACT */
 .contact{
 padding:60px 20px;
@@ -270,6 +281,15 @@ text-align:center;
 <div class="container">
 
 <h1>{% trans "Request a Quote" %}</h1>
+
+<!-- 🔥 MENSAJE -->
+{% if messages %}
+  {% for message in messages %}
+    <div class="success-message">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
 
 <form method="POST" enctype="multipart/form-data">
 {% csrf_token %}

@@ -5,6 +5,8 @@ from django.core.files.storage import FileSystemStorage
 import stripe
 from django.conf import settings
 from django.core.mail import EmailMessage
+from django.contrib import messages
+from django.utils.translation import gettext as _  # 🔥 idioma
 
 # 🔥 Stripe config
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -59,8 +61,6 @@ def add_to_cart(request, id):
     base_price = product.base_price
 
     design_service = request.POST.get('design_service')
-
-    # 🔥 FIX: separar design fee
     design_fee = 30 if design_service else 0
 
     if product.is_custom_size and width and height:
@@ -76,13 +76,13 @@ def add_to_cart(request, id):
 
     cart[unique_key] = {
         'name': product.name,
-        'price': base_price,  # 🔥 solo producto
+        'price': base_price,
         'quantity': quantity,
         'notes': notes,
         'size': f"{width}ft x {height}ft" if width else "Standard",
         'file': file_url,
         'design': True if design_service else False,
-        'design_fee': design_fee,  # 🔥 nuevo campo
+        'design_fee': design_fee,
     }
 
     request.session['cart'] = cart
@@ -97,7 +97,6 @@ def cart(request):
     for item in cart.values():
         item_total = item['price'] * item['quantity']
 
-        # 🔥 FIX: sumar diseño solo una vez
         if item.get('design'):
             item_total += item.get('design_fee', 0)
 
@@ -129,7 +128,6 @@ def create_checkout_session(request):
     line_items = []
 
     for item in cart.values():
-        # 🧾 Producto
         line_items.append({
             'price_data': {
                 'currency': 'usd',
@@ -141,7 +139,6 @@ def create_checkout_session(request):
             'quantity': item['quantity'],
         })
 
-        # 🎨 Diseño (una sola vez)
         if item.get('design'):
             line_items.append({
                 'price_data': {
@@ -151,7 +148,7 @@ def create_checkout_session(request):
                     },
                     'unit_amount': int(item.get('design_fee', 30) * 100),
                 },
-                'quantity': 1,  # 🔥 clave
+                'quantity': 1,
             })
 
     domain = 'https://pixelhubfl.com'
@@ -207,7 +204,8 @@ Details:
 
         email_message.send()
 
-        return render(request, 'main/success.html')
+        messages.success(request, _("Your request was sent successfully"))  # 🔥 multi idioma
+        return redirect('services')
 
     return render(request, 'main/services.html')
 
@@ -247,6 +245,7 @@ Details:
 
         email_message.send()
 
-        return render(request, 'main/success.html')
+        messages.success(request, _("Your request was sent successfully"))  # 🔥 multi idioma
+        return redirect('design_services')
 
     return render(request, 'main/design_services.html')
