@@ -6,9 +6,8 @@ import stripe
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django.contrib import messages
-from django.utils.translation import gettext as _  # 🔥 idioma
+from django.utils.translation import gettext as _
 
-# 🔥 Stripe config
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
@@ -118,7 +117,6 @@ def remove_from_cart(request, key):
     return redirect('cart')
 
 
-# 💳 STRIPE CHECKOUT
 def create_checkout_session(request):
     cart = request.session.get('cart', {})
 
@@ -169,7 +167,7 @@ def success(request):
     return render(request, 'main/success.html')
 
 
-# 📩 SERVICES (QUOTE)
+# 📩 SERVICES
 def services(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -204,7 +202,30 @@ Details:
 
         email_message.send()
 
-        messages.success(request, _("Your request was sent successfully"))  # 🔥 multi idioma
+        # 🔥 EMAIL AL CLIENTE
+        subject = _("We received your request - Pixel Hub")
+        body = _(
+f"""
+Hi {name},
+
+Thank you for contacting Pixel Hub!
+
+We received your request and will get back to you shortly.
+
+📞 386-289-7307
+
+— Pixel Hub Team
+"""
+        )
+
+        EmailMessage(
+            subject,
+            body,
+            settings.EMAIL_HOST_USER,
+            [email],
+        ).send()
+
+        messages.success(request, _("Your request was sent successfully"))
         return redirect('services')
 
     return render(request, 'main/services.html')
@@ -245,7 +266,30 @@ Details:
 
         email_message.send()
 
-        messages.success(request, _("Your request was sent successfully"))  # 🔥 multi idioma
+        # 🔥 EMAIL AL CLIENTE
+        subject = _("We received your request - Pixel Hub")
+        body = _(
+f"""
+Hi {name},
+
+Thank you for contacting Pixel Hub!
+
+We received your design request and will get back to you shortly.
+
+📞 386-289-7307
+
+— Pixel Hub Team
+"""
+        )
+
+        EmailMessage(
+            subject,
+            body,
+            settings.EMAIL_HOST_USER,
+            [email],
+        ).send()
+
+        messages.success(request, _("Your request was sent successfully"))
         return redirect('design_services')
 
     return render(request, 'main/design_services.html')

@@ -2,252 +2,67 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-20 20:27-0400\n"
+"POT-Creation-Date: 2026-04-22 15:49-0400\n"
 "PO-Revision-Date: 2026-04-18\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: .\main\views.py:207 .\main\views.py:248
-msgid "Your request was sent successfully"
-msgstr ""
+#: .\main\views.py:206 .\main\views.py:270
+msgid "We received your request - Pixel Hub"
+msgstr "Hemos recibido tu solicitud - Pixel Hub"
 
-#: .\templates\main\cart.html:10 .\templates\main\cart.html:268
-#: .\templates\main\cart.html:293 .\templates\main\design_services.html:281
-#: .\templates\main\design_services.html:306 .\templates\main\home.html:324
-#: .\templates\main\home.html:349 .\templates\main\services.html:251
-#: .\templates\main\services.html:276
-msgid "Cart"
-msgstr "Carrito"
-
-#: .\templates\main\cart.html:264 .\templates\main\cart.html:289
-#: .\templates\main\design_services.html:277
-#: .\templates\main\design_services.html:302 .\templates\main\home.html:320
-#: .\templates\main\home.html:345 .\templates\main\services.html:247
-#: .\templates\main\services.html:272
-msgid "Home"
-msgstr "Inicio"
-
-#: .\templates\main\cart.html:265 .\templates\main\cart.html:290
-#: .\templates\main\design_services.html:278
-#: .\templates\main\design_services.html:303 .\templates\main\home.html:321
-#: .\templates\main\home.html:346 .\templates\main\services.html:248
-#: .\templates\main\services.html:273
-msgid "Shop"
-msgstr "Tienda"
-
-#: .\templates\main\cart.html:266 .\templates\main\cart.html:291
-#: .\templates\main\design_services.html:279
-#: .\templates\main\design_services.html:304 .\templates\main\home.html:322
-#: .\templates\main\home.html:347 .\templates\main\services.html:249
-#: .\templates\main\services.html:274
-msgid "Services"
-msgstr "Servicios"
-
-#: .\templates\main\cart.html:267 .\templates\main\cart.html:292
-#: .\templates\main\design_services.html:10
-#: .\templates\main\design_services.html:280
-#: .\templates\main\design_services.html:305 .\templates\main\home.html:323
-#: .\templates\main\home.html:348 .\templates\main\services.html:250
-#: .\templates\main\services.html:275
-msgid "Design Services"
-msgstr "Servicios de Diseño"
-
-#: .\templates\main\cart.html:271 .\templates\main\cart.html:286
-#: .\templates\main\design_services.html:284
-#: .\templates\main\design_services.html:299 .\templates\main\home.html:327
-#: .\templates\main\home.html:342 .\templates\main\services.html:254
-#: .\templates\main\services.html:269
-msgid "Search..."
-msgstr "Buscar..."
-
-#: .\templates\main\cart.html:300
-msgid "Your Cart"
-msgstr "Tu carrito"
-
-#: .\templates\main\cart.html:308
-msgid "Price"
-msgstr "Precio"
-
-#: .\templates\main\cart.html:310
-msgid "Quantity"
-msgstr "Cantidad"
-
-#: .\templates\main\cart.html:312
-msgid "Size"
-msgstr "Tamaño"
-
-#: .\templates\main\cart.html:314
-msgid "Notes"
-msgstr "Notas"
-
-#: .\templates\main\cart.html:317
-msgid "Design Service"
-msgstr "Servicio de diseño"
-
-#: .\templates\main\cart.html:317
-msgid "Yes"
-msgstr "Sí"
-
-#: .\templates\main\cart.html:317
-msgid "one-time fee"
-msgstr "pago único"
-
-#: .\templates\main\cart.html:321
-msgid "View Uploaded File"
-msgstr "Ver archivo"
-
-#: .\templates\main\cart.html:326
-msgid "Remove Item"
-msgstr "Eliminar"
-
-#: .\templates\main\cart.html:334
-msgid "Total"
-msgstr "Total"
-
-#: .\templates\main\cart.html:338
-msgid "Proceed to Checkout"
-msgstr "Ir al pago"
-
-#: .\templates\main\cart.html:349 .\templates\main\design_services.html:384
-#: .\templates\main\home.html:427 .\templates\main\services.html:323
-msgid "Let's Work Together"
-msgstr "Trabajemos juntos"
-
-#: .\templates\main\cart.html:353 .\templates\main\design_services.html:388
-#: .\templates\main\home.html:431 .\templates\main\services.html:327
-msgid "Based in Mount Dora, Florida"
-msgstr "Ubicados en Mount Dora, Florida"
-
-#: .\templates\main\design_services.html:313 .\templates\main\home.html:375
-msgid "Professional Graphic Design Services"
-msgstr "Servicios profesionales de diseño gráfico"
-
-#: .\templates\main\design_services.html:315
-msgid "Bring Your Ideas to Life With Pixel Hub"
-msgstr "Haz realidad tus ideas con Pixel Hub"
-
-#: .\templates\main\design_services.html:324
-msgid "Basic Design Assistance"
-msgstr "Asistencia básica de diseño"
-
-#: .\templates\main\design_services.html:325
-msgid "Simple design adjustments, artwork setup, and minor edits."
-msgstr ""
-"Ajustes simples de diseño, preparación de archivos y ediciones menores."
-
-#: .\templates\main\design_services.html:330
-msgid "Custom Graphic Design"
-msgstr "Diseño gráfico personalizado"
-
-#: .\templates\main\design_services.html:331
-msgid "Full custom design project created from scratch."
-msgstr "Diseño completamente personalizado desde cero."
-
-#: .\templates\main\design_services.html:336
-msgid "Logo Design Package"
-msgstr "Paquete de diseño de logo"
-
-#: .\templates\main\design_services.html:337
-msgid "Professional logo and branding concept creation."
-msgstr "Creación profesional de logos y branding."
-
-#: .\templates\main\design_services.html:345
-msgid "Request Design Help"
-msgstr "Solicitar diseño"
-
-#: .\templates\main\design_services.html:359 .\templates\main\services.html:297
-msgid "Full Name"
-msgstr "Nombre completo"
-
-#: .\templates\main\design_services.html:361 .\templates\main\services.html:299
-msgid "Email"
-msgstr "Correo electrónico"
-
-#: .\templates\main\design_services.html:363 .\templates\main\services.html:301
-msgid "Phone Number"
-msgstr "Número de teléfono"
-
-#: .\templates\main\design_services.html:366
-msgid "Basic Design Assistance - $30"
-msgstr "Asistencia básica de diseño - $30"
-
-#: .\templates\main\design_services.html:367
-msgid "Custom Graphic Design - $75"
-msgstr "Diseño gráfico personalizado - $75"
-
-#: .\templates\main\design_services.html:368
-msgid "Logo Design Package - $100"
-msgstr "Paquete de diseño de logo - $100"
-
-#: .\templates\main\design_services.html:371
-msgid "Describe your design needs"
-msgstr "Describe tus necesidades de diseño"
-
-#: .\templates\main\design_services.html:375
-msgid "Submit Design Request"
-msgstr "Enviar solicitud"
-
-#: .\templates\main\home.html:357
-msgid "Make Your Brand Stand Out"
-msgstr "Haz que tu marca destaque"
-
-#: .\templates\main\home.html:358
-msgid "Custom Signs, Wraps & Large Format Printing"
-msgstr "Letreros personalizados, wraps e impresión de gran formato"
-
-#: .\templates\main\home.html:361
-msgid "Shop Now"
-msgstr "Comprar ahora"
-
-#: .\templates\main\home.html:362 .\templates\main\services.html:10
-msgid "Get a Quote"
-msgstr "Solicitar cotización"
-
-#: .\templates\main\home.html:377
+#: .\main\views.py:208
+#, python-brace-format
 msgid ""
-"Need help bringing your ideas to life? Our creative team offers professional "
-"design services for logos, branding, wraps, signs, social media graphics and "
-"more."
+"\n"
+"Hi {name},\n"
+"\n"
+"Thank you for contacting Pixel Hub!\n"
+"\n"
+"We received your request and will get back to you shortly.\n"
+"\n"
+"📞 386-289-7307\n"
+"\n"
+"— Pixel Hub Team\n"
 msgstr ""
+"\n"
+"Hola {name},\n"
+"\n"
+"¡Gracias por contactar a Pixel Hub!\n"
+"\n"
+"Hemos recibido tu solicitud y te responderemos pronto.\n"
+"\n"
+"📞 386-289-7307\n"
+"\n"
+"— Equipo de Pixel Hub\n"
 
-#: .\templates\main\home.html:379
-msgid "Learn More"
-msgstr "Saber más"
+#: .\main\views.py:228 .\main\views.py:292
+msgid "Your request was sent successfully"
+msgstr "Tu solicitud fue enviada con éxito"
 
-#: .\templates\main\home.html:388
-msgid "Our Services"
-msgstr "Nuestros servicios"
-
-#: .\templates\main\home.html:395 .\templates\main\services.html:304
-msgid "Car Wrap"
-msgstr "Wrap de carro"
-
-#: .\templates\main\home.html:402
-msgid "Food Truck"
-msgstr "Food truck"
-
-#: .\templates\main\home.html:409 .\templates\main\services.html:306
-msgid "Boat Wrap"
-msgstr "Wrap de bote"
-
-#: .\templates\main\home.html:416 .\templates\main\services.html:305
-msgid "Truck Wrap"
-msgstr "Wrap de camión"
-
-#: .\templates\main\services.html:283
-msgid "Request a Quote"
-msgstr "Solicitar cotización"
-
-#: .\templates\main\services.html:307
-msgid "Food Truck Wrap"
-msgstr "Wrap para food truck"
-
-#: .\templates\main\services.html:310
-msgid "Describe your project"
-msgstr "Describe tu proyecto"
-
-#: .\templates\main\services.html:314
-msgid "Send Request"
-msgstr "Enviar"
+#: .\main\views.py:272
+#, python-brace-format
+msgid ""
+"\n"
+"Hi {name},\n"
+"\n"
+"Thank you for contacting Pixel Hub!\n"
+"\n"
+"We received your design request and will get back to you shortly.\n"
+"\n"
+"📞 386-289-7307\n"
+"\n"
+"— Pixel Hub Team\n"
+msgstr ""
+"\n"
+"Hola {name},\n"
+"\n"
+"¡Gracias por contactar a Pixel Hub!\n"
+"\n"
+"Hemos recibido tu solicitud de diseño y te responderemos pronto.\n"
+"\n"
+"📞 386-289-7307\n"
+"\n"
+"— Equipo de Pixel Hub\n"
